@@ -26,7 +26,22 @@ require("packer").startup(function(use)
             "folke/neodev.nvim",
         },
     })
+    --cursor
+    use("yamatsum/nvim-cursorline")
+    require('nvim-cursorline').setup {
+        cursorline = {
+            enable = true,
+            timeout = 1000,
+            number = false,
+        },
+        cursorword = {
+            enable = true,
+            min_length = 3,
+            hl = { underline = true },
+        }
+    }
     --debugger for c/c++
+    use("mfussenegger/nvim-dap")
     use("leoluz/nvim-dap-go")
     require("dap-go").setup()
     require("dap.ext.vscode").load_launchjs(nil, {})
@@ -87,15 +102,15 @@ require("packer").startup(function(use)
     use("lewis6991/gitsigns.nvim")
     use("mattn/emmet-vim")
 
-    use("navarasu/onedark.nvim") -- Theme inspired by Atom
+    use("navarasu/onedark.nvim")            -- Theme inspired by Atom
     use("folke/tokyonight.nvim")
-    use("nvim-lualine/lualine.nvim") -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")        -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-    use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
-    use("theprimeagen/harpoon") --quickly move between files
-    use("mbbill/undotree") --helps to undo things easily
-    use("manzeloth/live-server") --html live server
+    use("numToStr/Comment.nvim")            -- "gc" to comment visual regions/lines
+    use("tpope/vim-sleuth")                 -- Detect tabstop and shiftwidth automatically
+    use("theprimeagen/harpoon")             --quickly move between files
+    use("mbbill/undotree")                  --helps to undo things easily
+    use("manzeloth/live-server")            --html live server
     -- Formatting
     use("neovim/nvim-lspconfig")
     use("MunifTanjim/prettier.nvim")
@@ -132,7 +147,7 @@ require("packer").startup(function(use)
         requires = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
         },
-        tag = "nightly", -- optional, updated every week. (see issue #1193)
+        tag = "nightly",          -- optional, updated every week. (see issue #1193)
     })
     --better comments
     use("nvim-lua/plenary.nvim")
@@ -155,7 +170,6 @@ require("packer").startup(function(use)
     use("equalsraf/win32yank")
     -- play media files through telescope
     use("nvim-lua/popup.nvim")
-    use("nvim-lua/plenary.nvim")
     --terminal in screen
     use({
         "akinsho/toggleterm.nvim",
@@ -249,7 +263,7 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- See `:help lualine.txt`
 require("lualine").setup({
     options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = "tokyonight",
         component_separators = "|",
         section_separators = "",
@@ -290,7 +304,7 @@ require("telescope").setup({
             },
         },
         preview = {
-            hide_on_startup = true, -- hide previewer when picker starts
+            hide_on_startup = false, -- hide previewer when picker starts
         },
     },
 })
@@ -513,7 +527,7 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<CR>"] = cmp.mapping.confirm({
@@ -532,8 +546,8 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable( -1) then
-                luasnip.jump( -1)
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -578,7 +592,6 @@ vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< <CR>")
 vim.keymap.set("v", "<leader>S", ":s//g<left><left>")
 vim.keymap.set("n", "<leader>pv", "<cmd>NvimTreeFocus<Cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.lsp.buf.code_action()<Cr>")
-vim.keymap.set("n", "<leader>sm", "<cmd>Telescope media_files<Cr>")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -669,7 +682,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
