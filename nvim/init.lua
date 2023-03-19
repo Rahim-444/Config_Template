@@ -28,18 +28,18 @@ require("packer").startup(function(use)
     })
     --cursor
     use("yamatsum/nvim-cursorline")
-    require('nvim-cursorline').setup {
+    require("nvim-cursorline").setup({
         cursorline = {
             enable = true,
-            timeout = 1000,
+            timeout = 300,
             number = false,
         },
         cursorword = {
             enable = true,
             min_length = 3,
             hl = { underline = true },
-        }
-    }
+        },
+    })
     --debugger for c/c++
     use("mfussenegger/nvim-dap")
     use("leoluz/nvim-dap-go")
@@ -78,7 +78,6 @@ require("packer").startup(function(use)
     use({ "hrsh7th/cmp-nvim-lsp" })
     use({ "hrsh7th/cmp-nvim-lua" })
     use("onsails/lspkind.nvim")
-    use("hrsh7th/cmp-buffer")
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/nvim-cmp")
 
@@ -102,15 +101,15 @@ require("packer").startup(function(use)
     use("lewis6991/gitsigns.nvim")
     use("mattn/emmet-vim")
 
-    use("navarasu/onedark.nvim")            -- Theme inspired by Atom
+    use("navarasu/onedark.nvim")               -- Theme inspired by Atom
     use("folke/tokyonight.nvim")
-    use("nvim-lualine/lualine.nvim")        -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")           -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim")            -- "gc" to comment visual regions/lines
-    use("tpope/vim-sleuth")                 -- Detect tabstop and shiftwidth automatically
-    use("theprimeagen/harpoon")             --quickly move between files
-    use("mbbill/undotree")                  --helps to undo things easily
-    use("manzeloth/live-server")            --html live server
+    use("numToStr/Comment.nvim")               -- "gc" to comment visual regions/lines
+    use("tpope/vim-sleuth")                    -- Detect tabstop and shiftwidth automatically
+    use("theprimeagen/harpoon")                --quickly move between files
+    use("mbbill/undotree")                     --helps to undo things easily
+    use("manzeloth/live-server")               --html live server
     -- Formatting
     use("neovim/nvim-lspconfig")
     use("MunifTanjim/prettier.nvim")
@@ -147,7 +146,7 @@ require("packer").startup(function(use)
         requires = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
         },
-        tag = "nightly",          -- optional, updated every week. (see issue #1193)
+        tag = "nightly",                   -- optional, updated every week. (see issue #1193)
     })
     --better comments
     use("nvim-lua/plenary.nvim")
@@ -167,6 +166,7 @@ require("packer").startup(function(use)
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
+    -- makes coping easier
     use("equalsraf/win32yank")
     -- play media files through telescope
     use("nvim-lua/popup.nvim")
@@ -178,7 +178,15 @@ require("packer").startup(function(use)
             require("toggleterm").setup()
         end,
     })
+    --tabs in neovim
     use({ "romgrk/barbar.nvim", requires = "nvim-web-devicons" })
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+
+    -- Move to previous/next
+    map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+    map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+    map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
     -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
     local has_plugins, plugins = pcall(require, "custom.plugins")
     if has_plugins then
@@ -684,5 +692,9 @@ vim.opt.updatetime = 50
 -- The line beneath this is called `modeline`. See `:help modeline`
 
 -- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
