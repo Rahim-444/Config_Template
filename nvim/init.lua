@@ -101,15 +101,15 @@ require("packer").startup(function(use)
     use("lewis6991/gitsigns.nvim")
     use("mattn/emmet-vim")
 
-    use("navarasu/onedark.nvim")               -- Theme inspired by Atom
+    use("navarasu/onedark.nvim")            -- Theme inspired by Atom
     use("folke/tokyonight.nvim")
-    use("nvim-lualine/lualine.nvim")           -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")        -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim")               -- "gc" to comment visual regions/lines
-    use("tpope/vim-sleuth")                    -- Detect tabstop and shiftwidth automatically
-    use("theprimeagen/harpoon")                --quickly move between files
-    use("mbbill/undotree")                     --helps to undo things easily
-    use("manzeloth/live-server")               --html live server
+    use("numToStr/Comment.nvim")            -- "gc" to comment visual regions/lines
+    use("tpope/vim-sleuth")                 -- Detect tabstop and shiftwidth automatically
+    use("theprimeagen/harpoon")             --quickly move between files
+    use("mbbill/undotree")                  --helps to undo things easily
+    use("manzeloth/live-server")            --html live server
     -- Formatting
     use("neovim/nvim-lspconfig")
     use("MunifTanjim/prettier.nvim")
@@ -146,7 +146,7 @@ require("packer").startup(function(use)
         requires = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
         },
-        tag = "nightly",                   -- optional, updated every week. (see issue #1193)
+        tag = "nightly",          -- optional, updated every week. (see issue #1193)
     })
     --better comments
     use("nvim-lua/plenary.nvim")
