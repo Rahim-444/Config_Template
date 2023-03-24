@@ -614,7 +614,8 @@ dap.configurations.cpp = {
 		program = "${fileDirname}/${fileBasenameNoExtension}",
 		cwd = "${fileDirname}",
 		args = {},
-		stopOnEntry = true,
+		stopOnEntry = false,
+		-- stopOnObjcException = true,
 		runInTerminal = false,
 	},
 }
