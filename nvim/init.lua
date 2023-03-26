@@ -254,6 +254,9 @@ vim.o.completeopt = "menuone,noselect"
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+--makes neovim transparent
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -586,34 +589,22 @@ dap.adapters.lldb = {
     name = "lldb",
 }
 
--- dap.configurations.cpp = {
+-- require("dap").configurations.cpp = {
 --     {
---         name = "Launch",
+--         name = "Debug C Program",
 --         type = "lldb",
 --         request = "launch",
 --         program = "${fileDirname}/${fileBasenameNoExtension}",
---         cwd = "${fileDirname}",
 --         args = {},
---         stopOnEntry = true,
---         -- stopOnObjcException = true,
---         runInTerminal = false,
+--         cwd = "${workspaceFolder}",
+--         console = "integratedTerminal",
+--         externalConsole = false,
+--         internalConsoleOptions = "neverOpen",
+--         miDebuggerArgs = '-var-create --name OUTPUT --expr \'freopen("./output.txt","w",stdout);\'',
+--         preLaunchTask = "build",
+--         runInTerminal = true,
 --     },
 -- }
-require("dap").configurations.cpp = {
-    {
-        name = "Debug C Program",
-        type = "lldb",
-        request = "launch",
-        program = "${fileDirname}/${fileBasenameNoExtension}",
-        args = {},
-        cwd = "${workspaceFolder}",
-        console = "integratedTerminal",
-        externalConsole = false,
-        internalConsoleOptions = "neverOpen",
-        miDebuggerArgs = '-var-create --name OUTPUT --expr \'freopen("./output.txt","w",stdout);\'',
-        preLaunchTask = "build",
-    },
-}
 
 dap.configurations.c = dap.configurations.cpp
 dap.adapters.lldb = {
@@ -622,24 +613,74 @@ dap.adapters.lldb = {
     name = "lldb",
 }
 
-dapui.setup({
-    icons = {
-        expanded = "▾",
-        collapsed = "▸",
+-- dapui.setup({
+--     icons = {
+--         expanded = "▾",
+--         collapsed = "▸",
+--     },
+--     mappings = {
+--         expand = { "<CR>", "<2-LeftMouse>" },
+--         open = "o",
+--         remove = "d",
+--         edit = "e",
+--     },
+--     sidebar = {
+--         open_on_start = true,
+--         elements = {
+--             { id = "scopes",      size = 0.25 },
+--             { id = "breakpoints", size = 0.25 },
+--             { id = "stacks",      size = 0.25 },
+--             { id = "watches",     size = 0.25 },
+--         },
+--         size = 40,
+--         position = "left",
+--     },
+--     tray = {
+--         open_on_start = true,
+--         elements = {
+--             "repl",
+--         },
+--         size = 10,
+--         position = "bottom",
+--     },
+-- })
+local dap = require("dap")
+
+dap.configurations.cpp = {
+    {
+        type = "lldb",
+        request = "launch",
+        name = "lldb",
+        program = "${fileDirname}/${fileBasenameNoExtension}",
+        args = {},
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        sourceLanguages = { "c", "cpp" },
+        linux = {
+            miDebuggerPath = "/usr/bin/lldb-mi",
+        },
     },
+}
+
+dap.configurations.c = dap.configurations.cpp
+
+local dapui = require("dapui")
+dapui.setup({
+    icons = { expanded = "▾", collapsed = "▸" },
     mappings = {
         expand = { "<CR>", "<2-LeftMouse>" },
         open = "o",
         remove = "d",
         edit = "e",
+        repl = "r",
     },
     sidebar = {
         open_on_start = true,
         elements = {
-            { id = "scopes",      size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "stacks",      size = 0.25 },
-            { id = "watches",     size = 0.25 },
+            { id = "scopes",      size = 0.4 },
+            { id = "breakpoints", size = 0.3 },
+            { id = "stacks",      size = 0.3 },
+            { id = "watches",     size = 0.3 },
         },
         size = 40,
         position = "left",
@@ -652,6 +693,13 @@ dapui.setup({
         size = 10,
         position = "bottom",
     },
+    floating = {
+        max_height = nil,
+        max_width = nil,
+        mappings = {
+            close = { "q", "<Esc>" },
+        },
+    },
 })
 
 -- undotree keymap
@@ -661,7 +709,7 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 --debugger remaps
 function compile_and_continue()
     vim.cmd("w")
-    vim.cmd("!gcc -g -o %< %")
+    vim.cmd("!gcc -o %< % -g")
     require("dap").continue()
 end
 
@@ -684,7 +732,7 @@ vim.g.user_emmet_leader_key = ","
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>S", ":%s//g<left><left>")
 --c compile
-vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< <CR>")
+vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s <CR>")
 vim.keymap.set("v", "<leader>S", ":s//g<left><left>")
 vim.keymap.set("n", "<leader>pv", "<cmd>NvimTreeFocus<Cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.lsp.buf.code_action()<Cr>")
