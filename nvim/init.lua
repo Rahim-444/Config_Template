@@ -64,7 +64,7 @@ require("packer").startup(function(use)
             { "jbyuki/one-small-step-for-vimkind", module = "osv" },
         },
         config = function()
-            require("config.dap").setup()
+            require("nvim.after.dap").setup()
         end,
     })
     use({
