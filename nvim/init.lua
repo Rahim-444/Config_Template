@@ -47,18 +47,18 @@ require("packer").startup(function(use)
     require("dap.ext.vscode").load_launchjs(nil, {})
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
-    use {
+    use({
         "folke/which-key.nvim",
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup {
+            require("which-key").setup({
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
-            }
-        end
-    }
+            })
+        end,
+    })
     use("dbgx/lldb.nvim")
     use("jay-babu/mason-nvim-dap.nvim")
     -- Debugging
@@ -74,11 +74,8 @@ require("packer").startup(function(use)
             "jay-babu/mason-nvim-dap.nvim",
         },
         config = function()
-<<<<<<< HEAD
             require("nvim.after.dap").setup()
-=======
             require("after.dap").setup()
->>>>>>> a6a5402ea3333afb1b4aee73e235866eed946763
         end,
     })
     use({
@@ -116,15 +113,15 @@ require("packer").startup(function(use)
     use("lewis6991/gitsigns.nvim")
     use("mattn/emmet-vim")
 
-    use("navarasu/onedark.nvim")               -- Theme inspired by Atom
+    use("navarasu/onedark.nvim")            -- Theme inspired by Atom
     use("folke/tokyonight.nvim")
-    use("nvim-lualine/lualine.nvim")           -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")        -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim")               -- "gc" to comment visual regions/lines
-    use("tpope/vim-sleuth")                    -- Detect tabstop and shiftwidth automatically
-    use("theprimeagen/harpoon")                --quickly move between files
-    use("mbbill/undotree")                     --helps to undo things easily
-    use("manzeloth/live-server")               --html live server
+    use("numToStr/Comment.nvim")            -- "gc" to comment visual regions/lines
+    use("tpope/vim-sleuth")                 -- Detect tabstop and shiftwidth automatically
+    use("theprimeagen/harpoon")             --quickly move between files
+    use("mbbill/undotree")                  --helps to undo things easily
+    use("manzeloth/live-server")            --html live server
     -- Formatting
     use("neovim/nvim-lspconfig")
     use("MunifTanjim/prettier.nvim")
@@ -157,7 +154,7 @@ require("packer").startup(function(use)
         requires = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
         },
-        tag = "nightly",                   -- optional, updated every week. (see issue #1193)
+        tag = "nightly",          -- optional, updated every week. (see issue #1193)
     })
     --better comments
     use("nvim-lua/plenary.nvim")
