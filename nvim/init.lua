@@ -47,24 +47,34 @@ require("packer").startup(function(use)
     require("dap.ext.vscode").load_launchjs(nil, {})
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
     use("dbgx/lldb.nvim")
+    use("jay-babu/mason-nvim-dap.nvim")
+    -- Debugging
     use({
         "mfussenegger/nvim-dap",
-        opt = true,
-        event = "BufReadPre",
-        module = { "dap" },
-        wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
         requires = {
-            "Pocco81/DAPInstall.nvim",
+            "williamboman/mason.nvim",
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/nvim-dap-ui",
+            "ldelossa/nvim-dap-projects",
             "mfussenegger/nvim-dap-python",
             "nvim-telescope/telescope-dap.nvim",
-            { "leoluz/nvim-dap-go",                module = "dap-go" },
-            { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+            "jay-babu/mason-nvim-dap.nvim",
         },
         config = function()
-            require("config.dap").setup()
+            require("after.dap").setup()
         end,
     })
     use({
@@ -565,167 +575,14 @@ cmp.setup({
         { name = "luasnip" },
     },
 })
--- Load dap-go and configure it to use the LLDB debugger
-require("dap-go").setup({ debugger = "lldb" })
---dap-ui config for shortcuts
-local dap, dapui = require("dap"), require("dapui")
-dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
-end
-
--- Define a keybinding to start the debug session
-vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>lua require('dap').continue()<CR>", { noremap = true })
-local dap = require("dap")
-
-dap.adapters.lldb = {
-    type = "executable",
-    command = "/usr/lib/llvm-11/bin/lldb-vscode",
-    name = "lldb",
-}
-
--- require("dap").configurations.cpp = {
---     {
---         name = "Debug C Program",
---         type = "lldb",
---         request = "launch",
---         program = "${fileDirname}/${fileBasenameNoExtension}",
---         args = {},
---         cwd = "${workspaceFolder}",
---         console = "integratedTerminal",
---         externalConsole = false,
---         internalConsoleOptions = "neverOpen",
---         miDebuggerArgs = '-var-create --name OUTPUT --expr \'freopen("./output.txt","w",stdout);\'',
---         preLaunchTask = "build",
---         runInTerminal = true,
---     },
--- }
-
-dap.configurations.c = dap.configurations.cpp
-dap.adapters.lldb = {
-    type = "executable",
-    command = "/usr/lib/llvm-11/bin/lldb-vscode",
-    name = "lldb",
-}
-
--- dapui.setup({
---     icons = {
---         expanded = "▾",
---         collapsed = "▸",
---     },
---     mappings = {
---         expand = { "<CR>", "<2-LeftMouse>" },
---         open = "o",
---         remove = "d",
---         edit = "e",
---     },
---     sidebar = {
---         open_on_start = true,
---         elements = {
---             { id = "scopes",      size = 0.25 },
---             { id = "breakpoints", size = 0.25 },
---             { id = "stacks",      size = 0.25 },
---             { id = "watches",     size = 0.25 },
---         },
---         size = 40,
---         position = "left",
---     },
---     tray = {
---         open_on_start = true,
---         elements = {
---             "repl",
---         },
---         size = 10,
---         position = "bottom",
---     },
--- })
-local dap = require("dap")
-
-dap.configurations.cpp = {
-    {
-        type = "lldb",
-        request = "launch",
-        name = "lldb",
-        program = "${fileDirname}/${fileBasenameNoExtension}",
-        args = {},
-        cwd = "${workspaceFolder}",
-        stopOnEntry = false,
-        sourceLanguages = { "c", "cpp" },
-        linux = {
-            miDebuggerPath = "/usr/bin/lldb-mi",
-        },
-    },
-}
-
-dap.configurations.c = dap.configurations.cpp
-
-local dapui = require("dapui")
-dapui.setup({
-    icons = { expanded = "▾", collapsed = "▸" },
-    mappings = {
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        edit = "e",
-        repl = "r",
-    },
-    sidebar = {
-        open_on_start = true,
-        elements = {
-            { id = "scopes",      size = 0.4 },
-            { id = "breakpoints", size = 0.3 },
-            { id = "stacks",      size = 0.3 },
-            { id = "watches",     size = 0.3 },
-        },
-        size = 40,
-        position = "left",
-    },
-    tray = {
-        open_on_start = true,
-        elements = {
-            "repl",
-        },
-        size = 10,
-        position = "bottom",
-    },
-    floating = {
-        max_height = nil,
-        max_width = nil,
-        mappings = {
-            close = { "q", "<Esc>" },
-        },
-    },
-})
-
--- undotree keymap
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
--- my lovely remaps
-
 --debugger remaps
-function compile_and_continue()
-    vim.cmd("w")
-    vim.cmd("!gcc -o %< % -g")
-    require("dap").continue()
-end
-
-vim.api.nvim_set_keymap("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<F10>", require("dap").step_over)
-vim.keymap.set("n", "<F6>", require("dap").step_into)
-vim.keymap.set("n", "<F12>", require("dap").step_out)
-vim.keymap.set("n", "<leader>b", require("dap").toggle_breakpoint)
-vim.keymap.set(
-    "n",
-    "<leader>B",
-    ":lua require('dap').toggle_breakpoint(nil, nil, vim.fn.input('Breakpoint condition: '))<CR>"
-)
-vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
-
-require("nvim-dap-virtual-text").setup()
+-- function compile_and_continue()
+--     vim.cmd("w")
+--     vim.cmd("!gcc -o %< % -g")
+--     require("dap").continue()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
 --emmet remaps
 vim.g.user_emmet_mode = "n"
 vim.g.user_emmet_leader_key = ","
@@ -830,5 +687,7 @@ vim.opt.updatetime = 50
 -- vim: ts=2 sts=2 sw=2 et
 
 -- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
 -- vim: ts=2 sts=2 sw=2 et
