@@ -47,23 +47,36 @@ require("packer").startup(function(use)
     require("dap.ext.vscode").load_launchjs(nil, {})
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
-    use("folke/which-key.nvim")
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
     use("dbgx/lldb.nvim")
+    use("jay-babu/mason-nvim-dap.nvim")
     -- Debugging
-    use { 'mfussenegger/nvim-dap',
+    use({
+        "mfussenegger/nvim-dap",
         requires = {
-            'williamboman/mason.nvim',
+            "williamboman/mason.nvim",
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/nvim-dap-ui",
             "ldelossa/nvim-dap-projects",
             "mfussenegger/nvim-dap-python",
             "nvim-telescope/telescope-dap.nvim",
-            'jay-babu/mason-nvim-dap.nvim',
+            "jay-babu/mason-nvim-dap.nvim",
         },
         config = function()
             require("after.dap").setup()
         end,
-    }
+    })
     use({
         -- Autocompletion
         "hrsh7th/nvim-cmp",
@@ -563,13 +576,13 @@ cmp.setup({
     },
 })
 --debugger remaps
-function compile_and_continue()
-    vim.cmd("w")
-    vim.cmd("!gcc -o %< % -g")
-    require("dap").continue()
-end
-
-vim.api.nvim_set_keymap("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
+-- function compile_and_continue()
+--     vim.cmd("w")
+--     vim.cmd("!gcc -o %< % -g")
+--     require("dap").continue()
+-- end
+--
+-- vim.api.nvim_set_keymap("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
 --emmet remaps
 vim.g.user_emmet_mode = "n"
 vim.g.user_emmet_leader_key = ","
