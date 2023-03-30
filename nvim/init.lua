@@ -202,7 +202,6 @@ require("packer").startup(function(use)
     end
 end)
 
-
 -- Automatically source and re-compile packer whenever you save this init.lua
 local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
@@ -311,6 +310,7 @@ require("telescope").setup({
         },
     },
 })
+vim.o.signcolumn = require("dap").session() == nil and "auto" or "yes:1"
 
 -- Enable telescope fzf native, if installed
 pcall(require("telescope").load_extension, "fzf")
@@ -568,7 +568,6 @@ function compile_and_continue()
     require("dap").continue()
 end
 
-vim.api.nvim_set_keymap("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
 --emmet remaps
 vim.g.user_emmet_mode = "n"
 vim.g.user_emmet_leader_key = ","
@@ -587,6 +586,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+--undo tree
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<Cr>")
 
 vim.keymap.set("n", "<leader>vwm", function()
     require("vim-with-me").StartVimWithMe()
