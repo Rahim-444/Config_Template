@@ -1,3 +1,4 @@
+local api = vim.api
 local HOME = os.getenv("HOME")
 local M = {}
 local log_level = "INFO"
@@ -226,7 +227,7 @@ function M.setup()
 	}
 	dap.adapters.lldb = {
 		type = "executable",
-		command = "/usr/bin/lldb-vscode",
+		command = "/usr/bin/lldb-vscode-11",
 		name = "lldb",
 	}
 
