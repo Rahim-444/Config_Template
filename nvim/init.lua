@@ -96,6 +96,7 @@ require("packer").startup(function(use)
             pcall(require("nvim-treesitter.install").update({ with_sync = true }))
         end,
     })
+    use("nvim-treesitter/nvim-treesitter-context")
 
     use({
         -- Additional text objects via treesitter
@@ -108,9 +109,11 @@ require("packer").startup(function(use)
     use("tpope/vim-rhubarb")
     use("lewis6991/gitsigns.nvim")
     use("mattn/emmet-vim")
-
-    use("navarasu/onedark.nvim")               -- Theme inspired by Atom
+    --themes
+    use("navarasu/onedark.nvim") -- Theme inspired by Atom
     use("folke/tokyonight.nvim")
+    use({ "catppuccin/nvim", as = "catppuccin" })
+
     use("nvim-lualine/lualine.nvim")           -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
     use("numToStr/Comment.nvim")               -- "gc" to comment visual regions/lines
@@ -126,6 +129,7 @@ require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         "jay-babu/mason-null-ls.nvim",
     })
+    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
     use({
         "windwp/nvim-autopairs",
         after = "nvim-cmp",
