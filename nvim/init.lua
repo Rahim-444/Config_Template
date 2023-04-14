@@ -272,6 +272,7 @@ vim.cmd([[hi Normal ctermbg=none guibg=none]])
 vim.cmd([[
   highlight! WhichKeyFloat guibg=none guifg=none
 ]])
+vim.cmd([[set pumblend=5]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -571,7 +572,13 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 cmp.setup({
+    menu = {
+        winblend = 10,
+        pumblend = 10,
+    },
     snippet = {
+        pumblend = 10,
+        winblend = 10,
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
