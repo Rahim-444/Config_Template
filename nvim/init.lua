@@ -126,13 +126,13 @@ require("packer").startup(function(use)
     use("folke/tokyonight.nvim")
     use({ "catppuccin/nvim", as = "catppuccin" })
 
-    use("nvim-lualine/lualine.nvim")         -- Fancier statusline
+    use("nvim-lualine/lualine.nvim")           -- Fancier statusline
     use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-    use("numToStr/Comment.nvim")             -- "gc" to comment visual regions/lines
-    use("tpope/vim-sleuth")                  -- Detect tabstop and shiftwidth automatically
-    use("theprimeagen/harpoon")              --quickly move between files
-    use("mbbill/undotree")                   --helps to undo things easily
-    use("manzeloth/live-server")             --html live server
+    use("numToStr/Comment.nvim")               -- "gc" to comment visual regions/lines
+    use("tpope/vim-sleuth")                    -- Detect tabstop and shiftwidth automatically
+    use("theprimeagen/harpoon")                --quickly move between files
+    use("mbbill/undotree")                     --helps to undo things easily
+    use("manzeloth/live-server")               --html live server
     -- Formatting
     use("neovim/nvim-lspconfig")
     use("MunifTanjim/prettier.nvim")
@@ -166,7 +166,7 @@ require("packer").startup(function(use)
         requires = {
             "nvim-tree/nvim-web-devicons", -- optional, for file icons
         },
-        tag = "nightly",             -- optional, updated every week. (see issue #1193)
+        tag = "nightly",                   -- optional, updated every week. (see issue #1193)
     })
     --better comments
     use("nvim-lua/plenary.nvim")
@@ -236,6 +236,67 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = vim.fn.expand("$MYVIMRC"),
 })
 --debug
+local dap = require("dap")
+
+dap.adapters.lldb = {
+    type = "executable",
+    command = "/usr/bin/lldb-vscode-11",
+    name = "lldb",
+}
+
+dap.configurations.c = {
+    {
+        type = "lldb",
+        request = "launch",
+        name = "Debug C",
+        program = "${file}",
+        args = {},
+        cwd = vim.fn.getcwd(),
+        stopOnEntry = false,
+        runInTerminal = true,
+    },
+}
+
+require("dapui").setup({
+    icons = {
+        expanded = "▾",
+        collapsed = "▸",
+    },
+    mappings = {
+        -- Use `[` and `]` to navigate through the list of variables.
+        expand = { "<CR>", "<2-LeftMouse>" },
+        open = "o",
+        remove = "d",
+        edit = "e",
+    },
+    sidebar = {
+        open_on_start = true,
+        elements = {
+            -- You can change the order of elements in the sidebar
+            "scopes",
+            "breakpoints",
+            "stacks",
+            "watches",
+        },
+        width = 40,
+        position = "left",
+    },
+    tray = {
+        open_on_start = true,
+        elements = {
+            "repl",
+        },
+        height = 10,
+        position = "bottom",
+    },
+})
+vim.keymap.set("n", "<F5>", ":lua compile_and_continue()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<F10>", require("dap").step_over)
+vim.keymap.set("n", "<F11>", require("dap").step_into)
+vim.keymap.set("n", "<F12>", require("dap").step_out)
+vim.keymap.set("n", "<leader>b", require("dap").toggle_breakpoint)
+vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "", linehl = "", numhl = "" })
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -273,7 +334,15 @@ vim.cmd([[hi Normal ctermbg=none guibg=none]])
 vim.cmd([[
   highlight! WhichKeyFloat guibg=none guifg=none
 ]])
-vim.cmd([[set pumblend=5]])
+vim.cmd([[" Set pumblend to 70 for partially transparent popup menu
+set pumblend=30
+
+" Set background color of popup menu to be same as Neovim window background
+augroup PumColors
+  autocmd!
+  autocmd ColorScheme * hi Pmenu guibg=bg guifg=fg
+augroup END
+]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
@@ -573,13 +642,13 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 cmp.setup({
-    menu = {
-        winblend = 10,
-        pumblend = 10,
+    pum = {
+        kind = "",
+        title = "",
+        border = "rounded",
+        blend = 70,
     },
     snippet = {
-        pumblend = 10,
-        winblend = 10,
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end,
@@ -619,7 +688,7 @@ cmp.setup({
 -- debugger remaps
 function compile_and_continue()
     vim.cmd("w")
-    vim.cmd("!gcc -o %< % -g")
+    vim.cmd("!gcc -march=x86-64 -o %< % -g")
     require("dap").continue()
 end
 
