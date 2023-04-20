@@ -7,7 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.cmd([[packadd packer.nvim]])
 end
 
-require("packer").startup(function(use) 
+require("packer").startup(function(use)
     -- Package manager
     use("wbthomason/packer.nvim")
 
@@ -333,15 +333,15 @@ vim.cmd([[highlight NonText guibg=none]])
 vim.cmd([[highlight Normal guibg=none]])
 vim.cmd([[hi Normal ctermbg=none guibg=none]])
 vim.cmd([[
-  highlight! WhichKeyFloat guibg=none guifg=none
+highlight! WhichKeyFloat guibg=none guifg=none
 ]])
 vim.cmd([[" Set pumblend to 70 for partially transparent popup menu
 set pumblend=30
 
 " Set background color of popup menu to be same as Neovim window background
 augroup PumColors
-  autocmd!
-  autocmd ColorScheme * hi Pmenu guibg=bg guifg=fg
+autocmd!
+autocmd ColorScheme * hi Pmenu guibg=bg guifg=fg
 augroup END
 ]])
 
@@ -642,50 +642,50 @@ mason_lspconfig.setup_handlers({
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
-cmp.setup({
-    pum = {
-        kind = "",
-        title = "",
-        border = "rounded",
-        blend = 70,
-    },
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { "i", "s" }),
-    }),
-    sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-    },
-})
+-- cmp.setup({
+--   pum = {
+--       kind = "",
+--       title = "",
+--       border = "rounded",
+--       blend = 70,
+--   },
+--   snippet = {
+--       expand = function(args)
+--           luasnip.lsp_expand(args.body)
+--       end,
+--   },
+--   mapping = cmp.mapping.preset.insert({
+--       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+--       ["<C-f>"] = cmp.mapping.scroll_docs(4),
+--       ["<C-Space>"] = cmp.mapping.complete(),
+--       ["<CR>"] = cmp.mapping.confirm({
+--           behavior = cmp.ConfirmBehavior.Replace,
+--           select = true,
+--       }),
+--       ["<Tab>"] = cmp.mapping(function(fallback)
+--             if cmp.visible() then
+--                 cmp.select_next_item()
+--             elseif luasnip.expand_or_jumpable() then
+--                 luasnip.expand_or_jump()
+--             else
+--                 fallback()
+--             end
+--         end, { "i", "s" }),
+--         ["<S-Tab>"] = cmp.mapping(function(fallback)
+--             if cmp.visible() then
+--                 cmp.select_prev_item()
+--             elseif luasnip.jumpable(-1) then
+--                 luasnip.jump(-1)
+--             else
+--                 fallback()
+--             end
+--         end, { "i", "s" }),
+--     }),
+--     sources = {
+--         { name = "nvim_lsp" },
+--         { name = "luasnip" },
+--     },
+-- })
 -- debugger remaps
 function compile_and_continue()
     vim.cmd("w")
@@ -699,7 +699,7 @@ vim.g.user_emmet_leader_key = ","
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>S", ":%s//g<left><left>")
 --c compile
-vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s <CR>")
+vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s -lm<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps
