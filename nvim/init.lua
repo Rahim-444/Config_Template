@@ -357,6 +357,7 @@ vim.wo.signcolumn = "yes"
 vim.o.termguicolors = true
 -- vim.cmd([[colorscheme tokyonight-moon]])
 vim.cmd([[highlight NonText guibg=none]])
+vim.cmd([[hi NvimTreeNormal guibg=NONE ctermbg=NONE]])
 vim.cmd([[highlight Normal guibg=none]])
 vim.cmd([[hi Normal ctermbg=none guibg=none]])
 vim.cmd([[
