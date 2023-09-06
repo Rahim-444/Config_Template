@@ -25,7 +25,6 @@ require("lualine").setup({
     section_separators = "",
   },
 })
-
 -- Enable Comment.nvim
 require("Comment").setup()
 
