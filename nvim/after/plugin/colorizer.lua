@@ -1,41 +1,27 @@
---NOTE: i removed this plugin and installed clorizer chad instaed
-
--- -- Attaches to every FileType mode
--- require("colorizer").setup()
---
--- -- Attach to certain Filetypes, add special configuration for `html`
--- -- Use `background` for everything else.
--- require("colorizer").setup({
--- 	"css",
--- 	"javascript",
--- 	"c",
--- 	html = {
--- 		mode = "foreground",
--- 	},
--- })
---
--- -- Use the `default_options` as the second parameter, which uses
--- -- `foreground` for every mode. This is the inverse of the previous
--- -- setup configuration.
--- require("colorizer").setup({
--- 	"css",
--- 	"javascript",
--- 	"c",
--- 	html = { mode = "background" },
--- }, { mode = "foreground" })
---
--- -- Use the `default_options` as the second parameter, which uses
--- -- `foreground` for every mode. This is the inverse of the previous
--- -- setup configuration.
--- require("colorizer").setup({
--- 	"*", -- Highlight all files, but customize some others.
--- 	css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
--- 	html = { names = false }, -- Disable parsing "names" like Blue or Gray
--- })
---
--- -- Exclude some filetypes from highlighting by using `!`
--- require("colorizer").setup({
--- 	"*", -- Highlight all files, but customize some others.
--- 	"!vim", -- Exclude vim from highlighting.
--- 	-- Exclusion Only makes sense if '*' is specified!
--- })
+require("colorizer").setup({
+	filetypes = { "*" },
+	r_default_options = {
+		RGB = true, -- #RGB hex codes
+		RRGGBB = true, -- #RRGGBB hex codes
+		names = true, -- "Name" codes like Blue or blue
+		RRGGBBAA = false, -- #RRGGBBAA hex codes
+		AARRGGBB = false, -- 0xAARRGGBB hex codes
+		rgb_fn = false, -- CSS rgb() and rgba() functions
+		hsl_fn = false, -- CSS hsl() and hsla() functions
+		css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+		css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+		-- Available modes for `mode`: foreground, background,  virtualtext
+		mode = "background", -- Set the display mode.
+		-- Available methods are false / true / "normal" / "lsp" / "both"
+		-- True is same as normal
+		tailwind = true,                  -- Enable tailwind colors
+		-- parsers can contain values use d in |use r_default_options|
+		sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+		virtualtext = "■",
+		-- update color values even if buffer is not focuse d
+		-- example use : cmp_menu, cmp_docs
+		always_update = false,
+	},
+	-- all the sub-options of filetypes apply to buftypes
+	buftypes = {},
+})
