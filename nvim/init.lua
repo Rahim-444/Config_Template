@@ -12,6 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.user_emmet_mode = "n"
+vim.g.user_emmet_leader_key = ","
 
 require("lazy").setup("plugins")
 require("keyopts.keymaps")
@@ -98,7 +100,7 @@ require("indent_blankline").setup({
   show_trailing_blankline_indent = false,
 })
 
--- Gitsigns
+-- Gitsigns,
 -- See `:help gitsigns.txt`
 require("gitsigns").setup({
   signs = {
@@ -112,6 +114,7 @@ require("gitsigns").setup({
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+require("luasnip/loaders/from_vscode").lazy_load()
 require("telescope").setup({
   defaults = {
     winblend = 10, -- set the transparency level to 10%
@@ -159,9 +162,6 @@ end
 vim.api.nvim_set_keymap("n", "<F7>", "<cmd>lua compile_and_continue()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<F3>", '<cmd>lua require("dapui").close()<CR>')
 --emmet remaps
-vim.g.user_emmet_mode = "n"
-vim.g.user_emmet_leader_key = ","
-vim.g.mapleader = " "
 -- harpoon setup
 
 vim.cmd([[hi NvimTreeNormal guibg=NONE ctermbg=NONE]])
