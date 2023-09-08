@@ -17,9 +17,19 @@ require("lazy").setup("plugins")
 require("keyopts.keymaps")
 require("keyopts.opts")
 vim.g.dap_virtual_text = true
-local dapui = require("dapui")
+require("me.dap").setup()
 
 -- Configure DAP UI console
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
 dapui.setup({
   icons = {
     expanded = "▾",
@@ -57,27 +67,19 @@ dapui.setup({
     position = "left", -- Position of the sidebar (left or right)
   },
   tray = {
-    -- open_on_start = true, -- Automatically open the DAP UI console tray when starting a debugging session
+    open_on_start = true, -- Automatically open the DAP UI console tray when starting a debugging session
     elements = {
-      "repl",
+      {
+        id = "repl",
+        size = 1,
+      },
     },
     height = 10,       -- Height of the tray
     position = "bottom", -- Position of the tray (bottom or top)
   },
 })
 
-local dap, dapui = require("dap"), require("dapui")
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
 require("nvim-dap-virtual-text").setup()
-require("me.dap").setup()
 require("lualine").setup({
   options = {
     icons_enabled = true,
