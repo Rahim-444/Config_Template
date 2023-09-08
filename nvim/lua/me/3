@@ -17,67 +17,10 @@ require("lazy").setup("plugins")
 require("keyopts.keymaps")
 require("keyopts.opts")
 vim.g.dap_virtual_text = true
-local dapui = require("dapui")
-
--- Configure DAP UI console
-dapui.setup({
-  icons = {
-    expanded = "▾",
-    collapsed = "▸",
-  },
-  mappings = {
-    -- Use <leader>e to toggle the DAP UI console
-    expand = "<leader>e",
-    open = "<CR>",
-    remove = "d",
-    edit = "e",
-  },
-  sidebar = {
-    open_on_start = true, -- Automatically open the DAP UI console when starting a debugging session
-    elements = {
-      -- Customize the layout of the DAP UI console
-      {
-        id = "scopes",
-        size = 0.25, -- Size of the element relative to the sidebar width
-      },
-      {
-        id = "breakpoints",
-        size = 0.25,
-      },
-      {
-        id = "stacks",
-        size = 0.25,
-      },
-      {
-        id = "watches",
-        size = 0.25,
-      },
-    },
-    width = 40,      -- Width of the sidebar
-    position = "left", -- Position of the sidebar (left or right)
-  },
-  tray = {
-    -- open_on_start = true, -- Automatically open the DAP UI console tray when starting a debugging session
-    elements = {
-      "repl",
-    },
-    height = 10,       -- Height of the tray
-    position = "bottom", -- Position of the tray (bottom or top)
-  },
-})
-
-local dap, dapui = require("dap"), require("dapui")
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
+require("dapui").setup()
 require("nvim-dap-virtual-text").setup()
 require("me.dap").setup()
+require("dap-cpptools").setup()
 require("lualine").setup({
   options = {
     icons_enabled = true,
@@ -147,15 +90,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- debugger remaps
-function compile_and_continue()
-  vim.cmd("w")
-  vim.cmd("!gcc -march=x86-64 -o %< % -g")
-  require("dap").continue()
-end
-
--- set keymap for compiling and continue_RequestListenerArgs
-vim.api.nvim_set_keymap("n", "<F7>", "<cmd>lua compile_and_continue()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<F3>", '<cmd>lua require("dapui").close()<CR>')
+-- local function compile_and_continue()
+--   vim.cmd("w")
+--   vim.cmd("!gcc -march=x86-64 -o %< % -g")
+--   require("dap").continue()
+-- end
+-- vim.api.nvim_set_keymap("n", "F7", "<cmd>lua compile_and_continue()<CR>", { noremap = true, silent = true })
 --emmet remaps
 vim.g.user_emmet_mode = "n"
 vim.g.user_emmet_leader_key = ","
