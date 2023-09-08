@@ -156,7 +156,6 @@ function M.setup()
 	vim.fn.sign_define("DapStopped", { text = "🟢", texthl = "", linehl = "", numhl = "" })
 
 	set({ "n", "t" }, "<F3>", dap.terminate)
-	set({ "n", "t" }, "<F5>", dap.continue)
 	set("n", "<leader>b", dap.toggle_breakpoint)
 	set("n", "<leader>B", function()
 		dap.toggle_breakpoint(vim.fn.input({ prompt = "Breakpoint Condition: " }), nil, nil, true)
