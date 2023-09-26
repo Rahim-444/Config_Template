@@ -9,7 +9,11 @@ if not mason_null_ls_status then
 end
 
 mason_null_ls.setup({
-	ensure_installed = { "prettier", "prettierd", "stylua", "eslint_d" },
+	ensure_installed = {
+		"prettier",
+		"prettierd",
+		"stylua", --[[ ,"eslint_d" ]]
+	},
 })
 
 local builtins = null_ls.builtins
@@ -76,11 +80,11 @@ null_ls.setup({
 			},
 		}),
 
-		builtins.diagnostics.eslint_d.with({
-			diagnostics_format = "[eslint] #{m}\n(#{c})",
-			command = "eslint_d",
-			args = { "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" },
-		}),
+		-- builtins.diagnostics.eslint_d.with({
+		-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
+		-- 	command = "eslint_d",
+		-- 	args = { "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+		-- }),
 
 		-- Python formatter & diagnostics
 		builtins.diagnostics.flake8.with({

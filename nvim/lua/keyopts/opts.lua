@@ -59,16 +59,17 @@ vim.cmd([[highlight NonText guibg=none]])
 vim.cmd([[highlight Normal guibg=none]])
 vim.cmd([[hi Normal ctermbg=none guibg=none guifg=none]])
 vim.cmd([[
-highlight! WhichKeyFloat guibg=none guifg=none
+" highlight! WhichKeyFloat guibg=none guifg=none
 ]])
-vim.cmd([[" Set pumblend to 70 for partially transparent popup menu
-set pumblend=30
-" Set background color of popup menu to be same as Neovim window background
-augroup PumColors
-autocmd!
-autocmd ColorScheme * hi Pmenu guibg=bg guifg=fg
-augroup END
-]])
+--rechange
+-- vim.cmd([[" Set pumblend to 70 for partially transparent popup menu
+-- set pumblend=30
+-- " Set background color of popup menu to be same as Neovim window background
+-- augroup PumColors
+-- autocmd!
+-- autocmd ColorScheme * hi Pmenu guibg=bg guifg=fg
+-- augroup END
+-- ]])
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
