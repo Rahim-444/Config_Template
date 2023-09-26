@@ -97,7 +97,11 @@ null_ls.setup({
 
 		-- C/CPP formatter
 		builtins.formatting.clang_format.with({
-			filetypes = { "c", "cpp", "cs", "javascriptreact" },
+			filetypes = {
+				"c",
+				"cpp",
+				"cs", --[[ "javascriptreact"  ]]
+			},
 			command = "clang-format",
 		}),
 

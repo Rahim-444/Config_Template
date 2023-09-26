@@ -1,5 +1,4 @@
 return {
-	"neoclide/coc.nvim",
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
 		build = "yarn install --frozen-lockfile && yarn compile",
@@ -58,12 +57,12 @@ return {
 	"navarasu/onedark.nvim", -- Theme inspired by Ato,
 	"folke/tokyonight.nvim",
 
-	"nvim-lualine/lualine.nvim", -- Fancier statuslin,
+	"nvim-lualine/lualine.nvim",        -- Fancier statuslin,
 	"lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank line
-	"numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	"theprimeagen/harpoon", --quickly move between files
-	"mbbill/undotree", --helps to undo things easily
+	"numToStr/Comment.nvim",            -- "gc" to comment visual regions/lines
+	"tpope/vim-sleuth",                 -- Detect tabstop and shiftwidth automatically
+	"theprimeagen/harpoon",             --quickly move between files
+	"mbbill/undotree",                  --helps to undo things easily
 	--debugger
 	"mfussenegger/nvim-dap",
 	"rcarriga/nvim-dap-ui",
@@ -100,7 +99,7 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+		tag = "nightly",          -- optional, updated every week. (see issue #1193)
 	},
 	--better comments
 	{
@@ -113,10 +112,10 @@ return {
 		},
 	},
 	-- Fuzzy Finder (files, lsp, etc)
-	{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 	"NvChad/nvim-colorizer.lua",
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make",   cond = vim.fn.executable("make") == 1 },
 	-- makes coping easier
 	"equalsraf/win32yank",
 	-- play media files through telescope
