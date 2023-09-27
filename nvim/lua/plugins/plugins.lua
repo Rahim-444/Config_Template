@@ -1,5 +1,11 @@
 return {
 	{
+		"VonHeikemen/fine-cmdline.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
+	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
 		build = "yarn install --frozen-lockfile && yarn compile",
 	},

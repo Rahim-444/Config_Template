@@ -26,6 +26,8 @@ local opts = { noremap = true, silent = true }
 map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
 map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
 map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+--command line
+vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<leader>/", function()
