@@ -78,7 +78,8 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
-		dependencies = "nvim-cmp",
+		event = "InsertEnter",
+		opts = {}, -- this is equalent to setup({}) function
 	},
 	{
 		"windwp/nvim-ts-autotag",

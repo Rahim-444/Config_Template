@@ -1,13 +1,4 @@
-local present1, autopairs = pcall(require, "nvim-autopairs")
-local present2, autopairs_completion = pcall(require, "nvim-autopairs.completion.cmp")
-
-if not (present1 or present2) then
-	return
-end
-
-autopairs.setup({
-	disable_filetype = { "TelescopePrompt", "vim" },
-})
-
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
-cmp.event:on("confirm_done", autopairs_completion.on_confirm_done())
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())

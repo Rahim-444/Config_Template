@@ -12,7 +12,8 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"prettier",
 		"prettierd",
-		"stylua", --[[ ,"eslint_d" ]]
+		"stylua",
+		--eslint_d,
 	},
 })
 
@@ -100,14 +101,14 @@ null_ls.setup({
 		}),
 
 		-- C/CPP formatter
-		builtins.formatting.clang_format.with({
-			filetypes = {
-				"c",
-				"cpp",
-				"cs", --[[ "javascriptreact"  ]]
-			},
-			command = "clang-format",
-		}),
+		-- builtins.formatting.clang_format.with({
+		-- 	filetypes = {
+		-- 		"c",
+		-- 		"cpp",
+		-- 		"cs", --[[ "javascriptreact"  ]]
+		-- 	},
+		-- 	command = "clang-format",
+		-- }),
 
 		-- Lua
 		builtins.formatting.stylua.with({
