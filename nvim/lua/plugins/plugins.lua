@@ -37,6 +37,7 @@ return {
 	"onsails/lspkind.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/nvim-cmp",
+	"mg979/vim-visual-multi",
 
 	{
 		-- Highlight, edit, and navigate code
@@ -89,7 +90,7 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		ft = { "javascript", "javascriptreact", "html", "css", "typescript", "typescriptreact" },
+		ft = { "java", "javascript", "javascriptreact", "html", "css", "typescript", "typescriptreact" },
 		dependencies = "nvim-treesitter",
 		branch = "main",
 		config = function()

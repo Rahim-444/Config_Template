@@ -54,6 +54,7 @@ vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<Cr>")
 vim.keymap.set("n", "<leader>S", ":%s//g<left><left>")
 --c compile
 vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s -lm<CR>")
+vim.keymap.set("n", "<F9>", ":w <CR> :!javac %<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps

@@ -78,6 +78,7 @@ null_ls.setup({
 				"javascriptreact",
 				"typescript",
 				"typescriptreact",
+				"java",
 			},
 		}),
 
