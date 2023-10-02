@@ -96,8 +96,8 @@ require("Comment").setup()
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require("ibl").setup({
-  char = "┊",
-  show_trailing_blankline_indent = false,
+  -- char = "┊",
+  -- show_trailing_blankline_indent = false,
 })
 
 -- Gitsigns,
@@ -166,4 +166,3 @@ vim.keymap.set("n", "<F3>", '<cmd>lua require("dapui").close()<CR>')
 
 vim.cmd([[hi NvimTreeNormal guibg=NONE ctermbg=NONE]])
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

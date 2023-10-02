@@ -27,6 +27,7 @@ return {
 			require("toggleterm").setup()
 		end,
 	},
+	"lvimuser/lsp-inlayhints.nvim",
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",

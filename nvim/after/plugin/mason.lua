@@ -45,15 +45,48 @@ local on_attach = function(_, bufnr)
 end
 require("lspconfig").tsserver.setup({})
 local servers = {
-	clangd = {},
+	clangd = {
+		hint = { enable = true },
+	},
 	--gopls = {},
 	pyright = {},
+	jdtls = {
+		hint = { enable = true },
+	},
 	rust_analyzer = {},
-	tsserver = {},
+	tsserver = {
+		hint = { enable = true },
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
+			hint = { enable = true },
+		},
+	},
+	tsserver = {
+		-- taken from https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
+		javascript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
+		},
+		typescript = {
+			inlayHints = {
+				includeInlayEnumMemberValueHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayVariableTypeHints = true,
+			},
 		},
 	},
 }

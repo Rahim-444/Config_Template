@@ -81,3 +81,8 @@ vim.o.completeopt = "menuone,noselect"
 --makes neovim transparent
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--tab stop and shift width
+vim.api.nvim_set_option("tabstop", 2)
+vim.api.nvim_set_option("softtabstop", 2)
+vim.api.nvim_set_option("shiftwidth", 2)
+vim.api.nvim_set_option("expandtab", true)
