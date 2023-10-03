@@ -1,4 +1,5 @@
 return {
+	{ "rose-pine/neovim",              name = "rose-pine" },
 	{
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = {
@@ -121,10 +122,14 @@ return {
 		},
 	},
 	-- Fuzzy Finder (files, lsp, etc)
-	{ "nvim-telescope/telescope.nvim",            branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim", branch = "0.1.x",  dependencies = { "nvim-lua/plenary.nvim" } },
 	"NvChad/nvim-colorizer.lua",
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make",   cond = vim.fn.executable("make") == 1 },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		cond = vim.fn.executable("make") == 1,
+	},
 	-- makes coping easier
 	"equalsraf/win32yank",
 	-- play media files through telescope

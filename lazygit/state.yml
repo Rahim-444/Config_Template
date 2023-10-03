@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/rahim/my_space/github
-- /home/rahim/my_space/brainathon
 - /home/rahim/.config
+- /home/rahim/my_space/brainathon
+- /home/rahim/my_space/github
 startuppopupversion: 5
 customcommandshistory:
 - wq
