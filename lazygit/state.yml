@@ -5,7 +5,7 @@ recentrepos:
 - /home/rahim/my_space/github
 startuppopupversion: 5
 customcommandshistory:
-- wq
 - q
+- wq
 hidecommandlog: false
 ignorewhitespaceindiffview: false
