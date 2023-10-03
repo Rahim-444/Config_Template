@@ -82,7 +82,7 @@ vim.o.completeopt = "menuone,noselect"
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 --tab stop and shift width
-vim.api.nvim_set_option("tabstop", 2)
-vim.api.nvim_set_option("softtabstop", 2)
-vim.api.nvim_set_option("shiftwidth", 2)
+vim.api.nvim_set_option("tabstop", 4)
+vim.api.nvim_set_option("softtabstop", 4)
+vim.api.nvim_set_option("shiftwidth", 4)
 vim.api.nvim_set_option("expandtab", true)

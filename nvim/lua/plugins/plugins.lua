@@ -28,6 +28,7 @@ return {
 			require("toggleterm").setup()
 		end,
 	},
+	"nanozuki/tabby.nvim",
 	"lvimuser/lsp-inlayhints.nvim",
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-buffer",
@@ -52,7 +53,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	},
-	"nvim-treesitter/nvim-treesitter-context",
+	-- "nvim-treesitter/nvim-treesitter-context",
 
 	-- Git related plugins
 
@@ -193,7 +194,7 @@ return {
 		},
 	},
 	--tabs in neovim
-	{ "romgrk/barbar.nvim", dependencies = "nvim-web-devicons" },
+	-- { "romgrk/barbar.nvim", dependencies = "nvim-web-devicons" },
 	{
 		"folke/zen-mode.nvim",
 		config = function()
