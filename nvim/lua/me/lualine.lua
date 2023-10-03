@@ -5,11 +5,12 @@ M.theme = function()
 		gray = "#727169",
 		innerbg = nil,
 		outerbg = "#16161D",
-		normal = "#7e9cd8",
-		insert = "#98bb6c",
-		visual = "#ffa066",
-		replace = "#e46876",
-		command = "#e6c384",
+		normal = "#EB6F92",
+		insert = "#F6C177",
+		visual = "#EBBCBA",
+		replace = "#9CCFD8",
+		command = "#C4A7E7",
+		terminal = "#31748F",
 	}
 	return {
 		inactive = {
