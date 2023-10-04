@@ -1,5 +1,6 @@
 local M = {}
 M.theme = function()
+	theme = "gruvbox"
 	local colors = {
 		darkgray = "#16161d",
 		gray = "#727169",
