@@ -28,6 +28,7 @@ return {
 			require("toggleterm").setup()
 		end,
 	},
+	"karb94/neoscroll.nvim",
 	"nanozuki/tabby.nvim",
 	"lvimuser/lsp-inlayhints.nvim",
 	"hrsh7th/nvim-cmp",
