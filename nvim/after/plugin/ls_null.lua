@@ -13,7 +13,7 @@ mason_null_ls.setup({
 		"prettier",
 		"prettierd",
 		"stylua",
-		--eslint_d,
+		"eslint_d",
 	},
 })
 
@@ -82,11 +82,11 @@ null_ls.setup({
 			},
 		}),
 
-		-- builtins.diagnostics.eslint_d.with({
-		-- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
-		-- 	command = "eslint_d",
-		-- 	args = { "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" },
-		-- }),
+		builtins.diagnostics.eslint_d.with({
+			diagnostics_format = "[eslint] #{m}\n(#{c})",
+			command = "eslint_d",
+			args = { "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+		}),
 
 		-- Python formatter & diagnostics
 		builtins.diagnostics.flake8.with({
