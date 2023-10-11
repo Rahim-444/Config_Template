@@ -1,5 +1,5 @@
 return {
-	{ "rose-pine/neovim",              name = "rose-pine" },
+	{ "rose-pine/neovim",      name = "rose-pine" },
 	{
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = {
@@ -42,6 +42,7 @@ return {
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/nvim-cmp",
 	"mg979/vim-visual-multi",
+	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 
 	{
 		-- Highlight, edit, and navigate code
@@ -124,7 +125,7 @@ return {
 		},
 	},
 	-- Fuzzy Finder (files, lsp, etc)
-	{ "nvim-telescope/telescope.nvim", branch = "0.1.x",  dependencies = { "nvim-lua/plenary.nvim" } },
+	{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 	"NvChad/nvim-colorizer.lua",
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
 	{
