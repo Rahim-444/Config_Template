@@ -11,16 +11,12 @@ return {
 		build = "yarn install --frozen-lockfile && yarn compile",
 	},
 	{
-		"barrett-ruth/live-server.nvim",
-		build = "yarn global add live-server",
-		config = true,
-	},
-	{
 		"goolord/alpha-nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("alpha").setup(require("alpha.themes.dashboard").config)
 		end,
+		event = "VimEnter",
 	},
 	{
 		"akinsho/toggleterm.nvim",
@@ -28,20 +24,27 @@ return {
 			require("toggleterm").setup()
 		end,
 	},
+	"mfussenegger/nvim-jdtls",
 	"karb94/neoscroll.nvim",
 	"nanozuki/tabby.nvim",
 	"lvimuser/lsp-inlayhints.nvim",
-	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"saadparwaiz1/cmp_luasnip",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
-	"stevearc/dressing.nvim",
+	{
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+		},
+	},
+	{
+		"stevearc/dressing.nvim",
+		"mg979/vim-visual-multi",
+		event = "VeryLazy",
+	},
 	"onsails/lspkind.nvim",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/nvim-cmp",
-	"mg979/vim-visual-multi",
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 
 	{
@@ -59,7 +62,6 @@ return {
 
 	-- Git related plugins
 
-	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
 	"lewis6991/gitsigns.nvim",
 	"mattn/emmet-vim",
@@ -69,17 +71,29 @@ return {
 	"navarasu/onedark.nvim", -- Theme inspired by Ato,
 	"folke/tokyonight.nvim",
 
-	"nvim-lualine/lualine.nvim",        -- Fancier statuslin,
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 	"lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank line
-	"numToStr/Comment.nvim",            -- "gc" to comment visual regions/lines
-	"tpope/vim-sleuth",                 -- Detect tabstop and shiftwidth automatically
-	"theprimeagen/harpoon",             --quickly move between files
-	"mbbill/undotree",                  --helps to undo things easily
+	{
+		"numToStr/Comment.nvim",        -- "gc" to comment visual regions/lines
+		event = { "BufReadPre", "BufNewFile" },
+	},
+	"tpope/vim-sleuth",  -- Detect tabstop and shiftwidth automatically
+	"theprimeagen/harpoon", --quickly move between files
+	"mbbill/undotree",   --helps to undo things easily
 	--debugger
-	"mfussenegger/nvim-dap",
-	"rcarriga/nvim-dap-ui",
-	"theHamsta/nvim-dap-virtual-text",
-	"nvim-telescope/telescope-dap.nvim",
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+
+			"rcarriga/nvim-dap-ui",
+			"theHamsta/nvim-dap-virtual-text",
+			"nvim-telescope/telescope-dap.nvim",
+		},
+		event = "VeryLazy",
+	},
 	-- Formatting
 	"neovim/nvim-lspconfig",
 	"MunifTanjim/prettier.nvim",
@@ -196,7 +210,6 @@ return {
 		},
 	},
 	--tabs in neovim
-	-- { "romgrk/barbar.nvim", dependencies = "nvim-web-devicons" },
 	{
 		"folke/zen-mode.nvim",
 		config = function()

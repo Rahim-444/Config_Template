@@ -14,6 +14,7 @@ mason_null_ls.setup({
 		"prettierd",
 		"stylua",
 		"eslint_d",
+		"jdtls",
 	},
 })
 

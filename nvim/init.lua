@@ -82,6 +82,7 @@ dapui.setup({
 })
 
 require("nvim-dap-virtual-text").setup()
+
 require("lualine").setup({
   options = {
     icons_enabled = true,

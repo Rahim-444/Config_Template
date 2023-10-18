@@ -10,6 +10,8 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.textwidth = 80
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -50,8 +52,12 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 50
 vim.wo.signcolumn = "yes"
+
+-- horisontal lign
+vim.o.textwidth = 80
+vim.o.linebreak = true
 
 -- Set colorscheme
 vim.o.termguicolors = true
