@@ -6,6 +6,7 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 	},
+	"mfussenegger/nvim-jdtls",
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
 		build = "yarn install --frozen-lockfile && yarn compile",
@@ -24,7 +25,6 @@ return {
 			require("toggleterm").setup()
 		end,
 	},
-	"mfussenegger/nvim-jdtls",
 	"karb94/neoscroll.nvim",
 	"nanozuki/tabby.nvim",
 	"lvimuser/lsp-inlayhints.nvim",
@@ -45,6 +45,7 @@ return {
 		event = "VeryLazy",
 	},
 	"onsails/lspkind.nvim",
+	"andweeb/presence.nvim",
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 
 	{
@@ -139,7 +140,13 @@ return {
 		},
 	},
 	-- Fuzzy Finder (files, lsp, etc)
-	{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 	"NvChad/nvim-colorizer.lua",
 	-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
 	{
@@ -198,17 +205,13 @@ return {
 	"dbgx/lldb.nvim",
 	-- Debuggise ({
 	-- Autocompletion
-	{
-		"hrsh7th/nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"rafamadriz/friendly-snippets",
-		},
-	},
+	"hrsh7th/nvim-cmp",
+	"hrsh7th/cmp-nvim-lsp",
+	"L3MON4D3/LuaSnip",
+	"saadparwaiz1/cmp_luasnip",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"rafamadriz/friendly-snippets",
 	--tabs in neovim
 	{
 		"folke/zen-mode.nvim",

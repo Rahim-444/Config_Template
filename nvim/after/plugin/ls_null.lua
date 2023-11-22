@@ -14,7 +14,6 @@ mason_null_ls.setup({
 		"prettierd",
 		"stylua",
 		"eslint_d",
-		"jdtls",
 	},
 })
 
@@ -90,17 +89,17 @@ null_ls.setup({
 		}),
 
 		-- Python formatter & diagnostics
-		builtins.diagnostics.flake8.with({
-			filetypes = { "python" },
-			command = "flake8",
-			args = { "--stdin-display-name", "$FILENAME", "-" },
-		}),
-
-		builtins.formatting.black.with({
-			filetypes = { "python" },
-			command = "black",
-			args = { "--quiet", "--fast", "-" },
-		}),
+		-- builtins.diagnostics.flake8.with({
+		-- 	filetypes = { "python" },
+		-- 	command = "flake8",
+		-- 	args = { "--stdin-display-name", "$FILENAME", "-" },
+		-- }),
+		--
+		-- builtins.formatting.black.with({
+		-- 	filetypes = { "python" },
+		-- 	command = "black",
+		-- 	args = { "--quiet", "--fast", "-" },
+		-- }),
 
 		-- C/CPP formatter
 		-- builtins.formatting.clang_format.with({

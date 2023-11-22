@@ -2,6 +2,7 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.guicursor = ""
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -31,7 +32,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 -- blinking cursor
-vim.o.guicursor = "i:ver1,a:blinkon1"
+vim.o.guicursor = "i:,a:blinkon1"
 -- Set highlight on search
 vim.o.hlsearch = false
 

@@ -50,9 +50,6 @@ local servers = {
 	},
 	--gopls = {},
 	pyright = {},
-	jdtls = {
-		hint = { enable = true },
-	},
 	rust_analyzer = {},
 	tsserver = {
 		hint = { enable = true },
