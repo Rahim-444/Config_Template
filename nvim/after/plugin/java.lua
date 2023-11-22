@@ -17,10 +17,6 @@ if root_dir == "" then
 	return
 end
 
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
-local workspace_dir = "/home/rahim/my_space/javaProjets/" .. project_name
-os.execute("mkdir " .. workspace_dir)
-
 -- Main Config
 local config = {
 	-- The command that starts the language server
@@ -124,18 +120,28 @@ local config = {
 	},
 }
 
-config["on_attach"] = function(client, bufnr)
-	require("keymaps").map_java_keys(bufnr)
-	require("lsp_signature").on_attach({
-		bind = true, -- This is mandatory, otherwise border config won't get registered.
-		floating_window_above_cur_line = false,
-		padding = "",
-		handler_opts = {
-			border = "rounded",
-		},
-	}, bufnr)
+-- check the file type of the current buffer
+local function check_ft()
+	local ft = vim.api.nvim_buf_get_option(0, "filetype")
+	if ft ~= "java" then
+		return false
+	end
+	return true
 end
+if check_ft() == true then
+	config["on_attach"] = function(client, bufnr)
+		require("keymaps").map_java_keys(bufnr)
+		require("lsp_signature").on_attach({
+			bind = true, -- This is mandatory, otherwise border config won't get registered.
+			floating_window_above_cur_line = false,
+			padding = "",
+			handler_opts = {
+				border = "rounded",
+			},
+		}, bufnr)
+	end
 
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
-require("jdtls").start_or_attach(config)
+	-- This starts a new client & server,
+	-- or attaches to an existing client & server depending on the `root_dir`.
+	require("jdtls").start_or_attach(config)
+end
