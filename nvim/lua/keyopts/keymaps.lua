@@ -31,7 +31,7 @@ vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<leader>ff", function()
-	vim.lsp.inlay_hint(0, nil)
+	vim.lsp.inlay_hint.enable()
 end, { desc = "Toggle Inlay Hints" })
 vim.keymap.set("n", "<leader>/", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -57,7 +57,7 @@ vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<Cr>")
 
 vim.keymap.set("n", "<leader>S", ":%s//g<left><left>")
 --c compile
-vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s -lm<CR>")
+vim.keymap.set("n", "<F8>", ":w <CR> :!gcc % -o %< -s -lm -lSDL2 -lSDL2main<CR>")
 vim.keymap.set("n", "<F9>", ":w <CR> :!javac -d bin src/**/*.java<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
