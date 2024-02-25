@@ -9,6 +9,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 vim.opt.wrap = true
 vim.opt.linebreak = true
@@ -16,7 +17,6 @@ vim.opt.textwidth = 80
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.swapfile = true
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
@@ -62,9 +62,8 @@ vim.o.linebreak = true
 
 -- Set colorscheme
 vim.o.termguicolors = true
--- vim.cmd([[highlight NonText guibg=none]])
--- vim.cmd([[highlight Normal guibg=none]])
--- vim.cmd([[hi Normal ctermbg=none guibg=none guifg=none]])
+-- Set transparency for the current window
+
 --rechange
 
 -- Set completeopt to have a better completion experience
@@ -74,6 +73,4 @@ vim.o.completeopt = "menuone,noselect"
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 --makes neovim transparent
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 --tab stop and shift width

@@ -13,8 +13,8 @@ local opts = { noremap = true, silent = true }
 -- nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 --
 -- -- See `:help K` for why this keymap
--- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
--- nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+--nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+--nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 --
 -- -- Lesser used LSP functionality
 -- nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -27,6 +27,8 @@ map("n", "<D-,>", "<Cmd>BufferPrevious<CR>", opts)
 map("n", "<D-.>", "<Cmd>BufferNext<CR>", opts)
 map("n", "<D-c>", "<Cmd>BufferClose<CR>", opts)
 --command line
+vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
@@ -50,7 +52,10 @@ vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { de
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<leader>q", function()
+	require("trouble").toggle("workspace_diagnostics")
+end)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
 --nvimtree keymap
 vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<Cr>")
@@ -62,15 +67,19 @@ vim.keymap.set(
 	"<F8>",
 	":w <CR> :!gcc % -o %< -lm -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/SDL2.framework/Headers -Wl,-rpath,/Library/Frameworks -F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -framework SDL2 <CR>"
 )
-vim.keymap.set("n", "<F9>", ":w <CR> :!javac -d bin src/**/*.java<CR>")
+vim.keymap.set(
+	"n",
+	"<F9>",
+	":w <CR> :!javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
+)
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps
 vim.keymap.set("v", "<leader>S", ":s//g<left><left>")
 vim.keymap.set("n", "<leader>pv", "<cmd>NvimTreeFocus<Cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.lsp.buf.code_action()<Cr>")
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz")

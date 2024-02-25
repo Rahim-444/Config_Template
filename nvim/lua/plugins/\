@@ -1,12 +1,6 @@
 return {
 	{ "rose-pine/neovim",                    name = "rose-pine" },
 	{
-		"VonHeikemen/fine-cmdline.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-		},
-	},
-	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
@@ -15,27 +9,10 @@ return {
 			-- refer to the configuration section below
 		},
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",      opts = {} },
-
-	-- Rainbow Highlighting
 	{
-		"HiPhish/nvim-ts-rainbow2",
-	},
-
-	"tribela/vim-transparent",
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- add any options here
-		},
+		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
 		},
 	},
 	"mfussenegger/nvim-jdtls",
@@ -51,6 +28,7 @@ return {
 		end,
 		event = "VimEnter",
 	},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",      opts = {} },
 	{
 		"akinsho/toggleterm.nvim",
 		config = function()
