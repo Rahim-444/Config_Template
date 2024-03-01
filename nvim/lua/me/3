@@ -55,7 +55,6 @@ require("gitsigns").setup({
 -- See `:help telescope` and `:help telescope.setup()`
 require("telescope").setup({
   defaults = {
-    winblend = 10, -- set the transparency level to 10%
     mappings = {
       i = {
         ["<C-u>"] = false,

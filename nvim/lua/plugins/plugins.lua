@@ -103,8 +103,19 @@ return {
 
 	--themes
 	"navarasu/onedark.nvim", -- Theme inspired by Ato,
-	"folke/tokyonight.nvim",
-
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			style = "storm",
+			transparent = true,
+			styles = {
+				sidebars = "transparent",
+				floats = "transparent",
+			},
+		},
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -226,8 +237,6 @@ return {
 					padding = { 1, 1, 1, 1 },
 					height = 10,
 					width = 40,
-					blend = 30,
-					winblend = 30,
 					highlight = "WhichKeyFloat",
 				},
 				-- Other configuration options go here

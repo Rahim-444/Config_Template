@@ -157,7 +157,6 @@ require("gitsigns").setup({
 -- require("luasnip/loaders/from_vscode").lazy_load()
 require("telescope").setup({
 	defaults = {
-		winblend = 40, -- set the transparency level to 10%
 		mappings = {
 			i = {
 				["<C-u>"] = false,
@@ -203,17 +202,17 @@ vim.api.nvim_set_keymap("n", "<F7>", "<cmd>lua compile_and_continue()<CR>", { no
 vim.keymap.set("n", "<F3>", '<cmd>lua require("dapui").close()<CR>')
 --emmet remaps
 -- harpoon setup
-function ColorMyPencils()
-	local color = "rose-pine"
-	vim.cmd.colorscheme(color)
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-end
+-- function ColorMyPencils()
+-- 	local color = "rose-pine"
+-- 	vim.cmd.colorscheme(color)
+-- 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+-- end
 
-ColorMyPencils()
-require("rose-pine").setup({
-	disable_background = true,
-})
+-- ColorMyPencils()
+-- require("rose-pine").setup({
+-- 	disable_background = true,
+-- })
 
 -- vim.cmd([[hi NvimTreeNormal guibg=NONE ctermbg=NONE]])
 -- The line beneath this is called `modeline`. See `:help modeline`
