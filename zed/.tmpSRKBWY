@@ -1,0 +1,51 @@
+{"signed_in":false,"type":"Setting","setting":"theme","value":"One Dark","milliseconds_since_first_event":0}
+{"signed_in":false,"type":"Setting","setting":"keymap","value":"VSCode","milliseconds_since_first_event":0}
+{"signed_in":false,"type":"App","operation":"open","milliseconds_since_first_event":0}
+{"signed_in":false,"type":"Editor","operation":"open","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":0}
+{"signed_in":false,"type":"Editor","operation":"open","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":1}
+{"signed_in":false,"type":"Editor","operation":"open","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":1}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"jsx","milliseconds_since_first_event":42873}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"jsx","milliseconds_since_first_event":46037}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"jsx","milliseconds_since_first_event":46634}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"jsx","milliseconds_since_first_event":47051}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":53842}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":53843}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":78455}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":78456}
+{"signed_in":false,"type":"Edit","duration":49730,"environment":"editor","milliseconds_since_first_event":89277}
+{"signed_in":false,"type":"Edit","duration":844,"environment":"terminal","milliseconds_since_first_event":118928}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":136158}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"jsx","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":136164}
+{"signed_in":false,"type":"App","operation":"open project","milliseconds_since_first_event":173899}
+{"signed_in":false,"type":"Editor","operation":"open","file_extension":"c","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":189396}
+{"signed_in":false,"type":"Edit","duration":16102,"environment":"editor","milliseconds_since_first_event":199371}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":204164}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":204275}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":204364}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":204453}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":204528}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":205727}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":205897}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":206011}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":206105}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":206511}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":208664}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"c","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":208664}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":224366}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":228940}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229075}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229215}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229557}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229694}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229757}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":229865}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":230264}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":231063}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":233706}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"c","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":233706}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":238776}
+{"signed_in":false,"type":"Copilot","suggestion_id":null,"suggestion_accepted":false,"file_extension":"c","milliseconds_since_first_event":238898}
+{"signed_in":false,"type":"Memory","memory_in_bytes":365510656,"virtual_memory_in_bytes":499778306048,"milliseconds_since_first_event":239921}
+{"signed_in":false,"type":"Cpu","usage_as_percentage":11.365996,"core_count":8,"milliseconds_since_first_event":239921}
+{"signed_in":false,"type":"Action","source":"command palette","action":":write","milliseconds_since_first_event":250913}
+{"signed_in":false,"type":"Editor","operation":"save","file_extension":"c","vim_mode":true,"copilot_enabled":true,"copilot_enabled_for_language":true,"milliseconds_since_first_event":250914}
