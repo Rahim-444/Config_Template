@@ -97,6 +97,7 @@ return {
 
 	"tpope/vim-rhubarb",
 	"lewis6991/gitsigns.nvim",
+	"tpope/vim-fugitive",
 	"mattn/emmet-vim",
 	"mlaursen/vim-react-snippets",
 
