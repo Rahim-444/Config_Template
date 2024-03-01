@@ -70,7 +70,7 @@ vim.keymap.set(
 vim.keymap.set(
 	"n",
 	"<F9>",
-	":w <CR> :!javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
+	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
 )
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")

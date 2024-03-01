@@ -22,7 +22,6 @@ return {
 		"HiPhish/nvim-ts-rainbow2",
 	},
 
-	"tribela/vim-transparent",
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -170,7 +169,6 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly",          -- optional, updated every week. (see issue #1193)
 	},
 	--better comments
 	{

@@ -70,7 +70,6 @@
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
-  "vim-transparent": { "branch": "master", "commit": "a0182216f5f26cdedb2e35356b38a47d0ed96e28" },
   "vim-visual-multi": { "branch": "master", "commit": "fe1ec7e430013b83c8c2dee85ae496251b71e253" },
   "vscode-es7-javascript-react-snippets": { "branch": "master", "commit": "185bb91a0b692c54136663464e8225872c434637" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
