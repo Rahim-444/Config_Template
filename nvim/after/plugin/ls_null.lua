@@ -110,7 +110,10 @@ null_ls.setup({
 		-- 	},
 		-- 	command = "clang-format",
 		-- }),
-
+		-- rust
+		builtins.formatting.rustfmt.with({
+			filetypes = { "rust" },
+		}),
 		-- Lua
 		builtins.formatting.stylua.with({
 			filetypes = { "lua" },
