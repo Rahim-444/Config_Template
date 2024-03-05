@@ -38,7 +38,6 @@ end, { desc = "Toggle Inlay Hints" })
 vim.keymap.set("n", "<leader>/", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 40,
 		previewer = true,
 	}))
 end, { desc = "[/] Fuzzily search in current buffer]" })
@@ -67,11 +66,12 @@ vim.keymap.set(
 	"<F8>",
 	":w <CR> :!gcc % -o %< -lm -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/SDL2.framework/Headers -Wl,-rpath,/Library/Frameworks -F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks -framework SDL2 <CR>"
 )
-vim.keymap.set(
-	"n",
-	"<F9>",
-	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
-)
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<F9>",
+-- 	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
+-- )
+vim.keymap.set("n", "<F9>", ":w <CR> :!cd .. && ~/my_space/build/run.sh<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps

@@ -62,9 +62,7 @@ vim.o.linebreak = true
 
 -- Set colorscheme
 vim.o.termguicolors = true
--- Set transparency for the current window
-
---rechange
+--change the color of nvim cursor line
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
