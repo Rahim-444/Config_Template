@@ -21,14 +21,24 @@ local builtins = null_ls.builtins
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre" -- or "BufWritePost"
 local async = event == "BufWritePost"
-local notify = vim.notify
-vim.notify = function(msg, ...)
-	if msg:match("warning: multiple different client offset_encodings") then
-		return
-	end
 
-	notify(msg, ...)
+local banned_messages = { "No information available" }
+vim.notify = function(msg, ...)
+	for _, banned in ipairs(banned_messages) do
+		if msg == banned then
+			return
+		end
+	end
+	return require("notify")(msg, ...)
 end
+
+-- vim.notify = function(msg, ...)
+-- 	if msg:match("warning: multiple different client offset_encodings") then
+-- 		return
+-- 	end
+--
+-- 	notify(msg, ...)
+-- end
 
 null_ls.setup({
 	on_attach = function(client, bufnr)

@@ -1,24 +1,36 @@
-require("notify").setup({
-	background_colour = "#000000",
-	fps = 30,
-	icons = {
-		DEBUG = "",
-		ERROR = "",
-		INFO = "",
-		TRACE = "✎",
-		WARN = "",
-	},
-	level = 1,
-	minimum_width = 50,
-	render = "default",
-	stages = "fade_in_slide_out",
-	time_formats = {
-		notification = "%T",
-		notification_history = "%FT%T",
-	},
-	timeout = 100,
-	top_down = true,
-})
+-- require("notify").setup({
+-- 	background_colour = "#000000",
+-- 	fps = 30,
+-- 	icons = {
+-- 		DEBUG = "",
+-- 		ERROR = "",
+-- 		INFO = "",
+-- 		TRACE = "✎",
+-- 		WARN = "",
+-- 	},
+-- 	level = 1,
+-- 	minimum_width = 50,
+-- 	render = "compact",
+-- 	stages = "fade_in_slide_out",
+-- 	time_formats = {
+-- 		notification = "%T",
+-- 		notification_history = "%FT%T",
+-- 	},
+-- 	timeout = 100,
+-- 	top_down = true,
+-- 	--remove no information available
+-- 	filter = {
+-- 		{
+-- 			event = "Notify",
+-- 			find = "No information available",
+-- 		},
+-- 		{
+-- 			event = "ERROR",
+-- 			find = "No manual entry",
+-- 		},
+-- 	},
+-- })
+--
 require("noice").setup({
 	lsp = {
 		progress = {
@@ -27,11 +39,10 @@ require("noice").setup({
 			-- See the section on formatting for more details on how to customize.
 			format = "",
 			format_done = "",
-			throttle = 1000 / 30, -- frequency to update lsp progress message
 		},
 		filter = {
 			{
-				event = "notify",
+				event = "Notify",
 				find = "No information available",
 			},
 			{
@@ -49,7 +60,7 @@ require("noice").setup({
 		},
 		hover = {
 			enabled = true,
-			silent = false, -- set to true to not show a message if hover is not available
+			silent = true, -- set to true to not show a message if hover is not available
 			view = nil, -- when nil, use defaults from documentation
 			---@type NoiceViewOptions
 			opts = {}, -- merged with defaults from documentation

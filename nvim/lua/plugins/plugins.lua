@@ -1,10 +1,25 @@
 return {
 	{ "rose-pine/neovim",                    name = "rose-pine" },
+	"mechatroner/rainbow_csv",
 	{
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
+	},
+	{
+		"vim-pandoc/vim-pandoc",
+	},
+	{
+		"vim-pandoc/vim-pandoc-syntax",
+	},
+	{
+		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	},
 	{
 		"folke/trouble.nvim",
@@ -24,19 +39,19 @@ return {
 
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
+	},
+
+	{
+		"rcarriga/nvim-notify",
 		opts = {
-			-- add any options here
-		},
-		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
+			timeout = 1500,
+			background_colour = "#000000",
+			render = "wrapped-compact",
+			fps = 60,
+			stages = "fade_in_slide_out",
 		},
 	},
+
 	"mfussenegger/nvim-jdtls",
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
@@ -112,6 +127,7 @@ return {
 			styles = {
 				sidebars = "transparent",
 				floats = "transparent",
+				normal = "transparent",
 			},
 		},
 	},
@@ -123,9 +139,9 @@ return {
 		"numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	"tpope/vim-sleuth",  -- Detect tabstop and shiftwidth automatically
+	"tpope/vim-sleuth",    -- Detect tabstop and shiftwidth automatically
 	"theprimeagen/harpoon", --quickly move between files
-	"mbbill/undotree",   --helps to undo things easily
+	"mbbill/undotree",     --helps to undo things easily
 	--debugger
 	{
 		"mfussenegger/nvim-dap",
@@ -250,6 +266,9 @@ return {
 	"saadparwaiz1/cmp_luasnip",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"saadparwaiz1/cmp_luasnip",
+	"neovim/nvim-lspconfig",
 	"rafamadriz/friendly-snippets",
 	--tabs in neovim
 	{

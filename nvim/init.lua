@@ -20,7 +20,6 @@ require("keyopts.keymaps")
 require("keyopts.opts")
 vim.g.dap_virtual_text = true
 require("me.dap").setup()
-
 -- Configure DAP UI console
 local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -65,7 +64,7 @@ dapui.setup({
 				size = 0.25,
 			},
 		},
-		width = 40,  -- Width of the sidebar
+		width = 40,      -- Width of the sidebar
 		position = "left", -- Position of the sidebar (left or right)
 	},
 	tray = {
@@ -76,7 +75,7 @@ dapui.setup({
 				size = 1,
 			},
 		},
-		height = 10,   -- Height of the tray
+		height = 10,       -- Height of the tray
 		position = "bottom", -- Position of the tray (bottom or top)
 	},
 })

@@ -42,6 +42,9 @@ vim.keymap.set("n", "<leader>/", function()
 	}))
 end, { desc = "[/] Fuzzily search in current buffer]" })
 
+--markdown preview
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", { desc = "[M]arkdown [P]review" })
+
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
@@ -71,15 +74,15 @@ vim.keymap.set(
 -- 	"<F9>",
 -- 	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
 -- )
-vim.keymap.set("n", "<F9>", ":w <CR> :!cd .. && ~/my_space/build/run.sh<CR>")
+vim.keymap.set("n", "<F9>", ":w <CR> :!cd ../.. && ~/my_space/build/run.sh<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps
 vim.keymap.set("v", "<leader>S", ":s//g<left><left>")
 vim.keymap.set("n", "<leader>pv", "<cmd>NvimTreeFocus<Cr>")
 vim.keymap.set("n", "<leader>Q", "<cmd>lua vim.lsp.buf.code_action()<Cr>")
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz")
