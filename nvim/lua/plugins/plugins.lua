@@ -1,6 +1,15 @@
 return {
 	{ "rose-pine/neovim",                    name = "rose-pine" },
 	"mechatroner/rainbow_csv",
+	"ntpeters/vim-better-whitespace",
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts)
+			require("lsp_signature").setup(opts)
+		end,
+	},
 	{
 		"VonHeikemen/fine-cmdline.nvim",
 		dependencies = {
