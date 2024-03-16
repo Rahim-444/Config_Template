@@ -74,7 +74,7 @@ vim.keymap.set(
 -- 	"<F9>",
 -- 	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
 -- )
-vim.keymap.set("n", "<F9>", ":w <CR> :!cd ../.. && ~/my_space/build/run.sh<CR>")
+vim.keymap.set("n", "<F9>", ":w <CR> :!~/my_space/build/run.sh<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps

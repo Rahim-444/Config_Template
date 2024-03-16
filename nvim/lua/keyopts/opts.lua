@@ -1,8 +1,6 @@
 -- the setup
 vim.opt.nu = true
 vim.opt.relativenumber = true
-
-vim.opt.guicursor = ""
 vim.opt.tabstop = 3
 vim.opt.softtabstop = 1
 vim.opt.shiftwidth = 3
