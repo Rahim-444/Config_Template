@@ -18,9 +18,13 @@ vim.g.user_emmet_leader_key = ","
 require("lazy").setup("plugins")
 require("keyopts.keymaps")
 require("keyopts.opts")
+require("Comment").setup({
+	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+})
 vim.g.dap_virtual_text = true
-require("me.dap").setup()
+--require("me.dap").setup()
 -- Configure DAP UI console
+--[[
 local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
@@ -81,6 +85,8 @@ dapui.setup({
 })
 
 require("nvim-dap-virtual-text").setup()
+]]
+--
 
 require("lualine").setup({
 	options = {

@@ -35,6 +35,11 @@ vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { d
 vim.keymap.set("n", "<leader>ff", function()
 	vim.lsp.inlay_hint.enable()
 end, { desc = "Toggle Inlay Hints" })
+--map esc to clear search
+vim.api.nvim_set_keymap("n", "<Esc>", ":nohlsearch<CR>", { noremap = true, silent = true })
+
+-- Deselect the current search in normal mode
+vim.api.nvim_set_keymap("n", "<CapsLock>", ":nohlsearch<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>/", function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
@@ -74,7 +79,7 @@ vim.keymap.set(
 -- 	"<F9>",
 -- 	":w <CR> :!cd .. && javac -d bin src/**/*.java && java -cp bin main.java.com.example.Poo.Application<CR>"
 -- )
-vim.keymap.set("n", "<F9>", ":w <CR> :!~/my_space/build/run.sh<CR>")
+vim.keymap.set("n", "<F9>", ":w <CR> :!~/my_space/build/database.sh<CR>")
 --zenmode
 vim.keymap.set("n", "<leader>z", "<CR>:ZenMode<CR>")
 --other remaps

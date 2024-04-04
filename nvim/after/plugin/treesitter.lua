@@ -1,15 +1,18 @@
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
-	rainbow = {
+	autotag = {
 		enable = true,
-		-- list of languages you want to disable the plugin for
-		disable = { "jsx", "cpp" },
-		-- Which query to use for finding delimiters
-		query = "rainbow-parens",
-		-- Highlight the entire buffer all at once
-		strategy = require("ts-rainbow").strategy.global,
 	},
+	-- rainbow = {
+	-- 	enable = true,
+	-- 	-- list of languages you want to disable the plugin for
+	-- 	disable = { "jsx", "cpp", "tsx", "typescript" },
+	-- 	-- Which query to use for finding delimiters
+	-- 	query = "rainbow-parens",
+	-- 	-- Highlight the entire buffer all at once
+	-- 	strategy = require("ts-rainbow").strategy.global,
+	-- },
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
 		"c",
@@ -19,8 +22,9 @@ require("nvim-treesitter.configs").setup({
 		"lua",
 		"python",
 		"rust",
+		"bash",
+		"json",
 		"typescript",
-		"vim",
 		"html",
 		"css",
 		"javascript",

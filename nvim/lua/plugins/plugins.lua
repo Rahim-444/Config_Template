@@ -1,6 +1,8 @@
 return {
 	{ "rose-pine/neovim",                    name = "rose-pine" },
 	"mechatroner/rainbow_csv",
+	"windwp/nvim-ts-autotag",
+	"chrisgrieser/nvim-spider",
 	"ntpeters/vim-better-whitespace",
 	{
 		"ray-x/lsp_signature.nvim",
@@ -18,6 +20,11 @@ return {
 	},
 	{
 		"vim-pandoc/vim-pandoc",
+	},
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true, -- or `opts = {}`
 	},
 	{
 		"vim-pandoc/vim-pandoc-syntax",
@@ -42,9 +49,9 @@ return {
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",      opts = {} },
 
 	-- Rainbow Highlighting
-	{
-		"HiPhish/nvim-ts-rainbow2",
-	},
+	-- {
+	-- 	"HiPhish/nvim-ts-rainbow2",
+	-- },
 
 	{
 		"folke/noice.nvim",
@@ -146,12 +153,14 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
+		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	"tpope/vim-sleuth",    -- Detect tabstop and shiftwidth automatically
 	"theprimeagen/harpoon", --quickly move between files
 	"mbbill/undotree",     --helps to undo things easily
 	--debugger
+	--[[
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
@@ -162,6 +171,8 @@ return {
 		},
 		event = "VeryLazy",
 	},
+	]]
+	--
 	-- Formatting
 	"neovim/nvim-lspconfig",
 	"MunifTanjim/prettier.nvim",
@@ -242,7 +253,6 @@ return {
 	},
 	--cursor line highlighter and puts line under text
 	"yamatsum/nvim-cursorline",
-	-- "HiPhish/nvim-ts-rainbow2",
 	"xiyaowong/transparent.nvim",
 	--debugger for c/c++
 	"github/copilot.vim",

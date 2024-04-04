@@ -17,12 +17,13 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#EBBCBA" })
 	vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#31748F" })
 	vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#9CCFD8" })
+	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#EBBCBA" })
 	vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C4A7E7" })
 	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 end)
 
 require("ibl").setup({
-	indent = { highlight = highlight, char = "|" },
+	indent = { highlight = highlight, char = "" },
 	whitespace = { remove_blankline_trail = true },
 })
 

@@ -128,6 +128,10 @@ null_ls.setup({
 		builtins.formatting.stylua.with({
 			filetypes = { "lua" },
 		}),
+		--java
+		builtins.formatting.google_java_format.with({
+			filetypes = { "java" },
+		}),
 
 		-- -- Shell
 		builtins.formatting.shfmt,
@@ -153,7 +157,7 @@ prettier.setup({
 		semi = true,
 		single_attribute_per_line = false,
 		single_quote = false,
-		tab_width = 1,
+		tab_width = 2,
 		trailing_comma = "es5",
 		use_tabs = false,
 		vue_indent_script_and_style = false,

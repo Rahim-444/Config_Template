@@ -1,36 +1,3 @@
--- require("notify").setup({
--- 	background_colour = "#000000",
--- 	fps = 30,
--- 	icons = {
--- 		DEBUG = "",
--- 		ERROR = "",
--- 		INFO = "",
--- 		TRACE = "✎",
--- 		WARN = "",
--- 	},
--- 	level = 1,
--- 	minimum_width = 50,
--- 	render = "compact",
--- 	stages = "fade_in_slide_out",
--- 	time_formats = {
--- 		notification = "%T",
--- 		notification_history = "%FT%T",
--- 	},
--- 	timeout = 100,
--- 	top_down = true,
--- 	--remove no information available
--- 	filter = {
--- 		{
--- 			event = "Notify",
--- 			find = "No information available",
--- 		},
--- 		{
--- 			event = "ERROR",
--- 			find = "No manual entry",
--- 		},
--- 	},
--- })
---
 require("noice").setup({
 	lsp = {
 		progress = {

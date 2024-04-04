@@ -51,9 +51,6 @@ local servers = {
 	--gopls = {},
 	pyright = {},
 	rust_analyzer = {},
-	tsserver = {
-		hint = { enable = true },
-	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },

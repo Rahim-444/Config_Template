@@ -1,10 +1,11 @@
--- the setup
+-- -- the setup
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 3
 vim.opt.softtabstop = 1
 vim.opt.shiftwidth = 3
 vim.opt.expandtab = true
+vim.g.syntastic_auto_jump = 0
 
 vim.opt.smartindent = true
 vim.opt.autoindent = true
@@ -29,8 +30,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
--- blinking cursor
-vim.o.guicursor = "i:,a:blinkon1"
+-- -- blinking cursor
+-- vim.opt.guicursor = "a:blinkon1"
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -54,7 +55,7 @@ vim.o.smartcase = true
 vim.o.updatetime = 50
 vim.wo.signcolumn = "yes"
 
--- horisontal lign
+-- -- horisontal lign
 vim.o.textwidth = 80
 vim.o.linebreak = true
 
