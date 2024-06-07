@@ -91,7 +91,8 @@ require("nvim-dap-virtual-text").setup()
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = require("me.lualine").theme(),
+		-- theme = require("me.lualine").theme(),
+		theme = "auto",
 		-- component_separators = "|",
 		-- section_separators = "",
 		component_separators = { left = "", right = "" },

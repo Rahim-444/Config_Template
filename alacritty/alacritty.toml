@@ -1,0 +1,74 @@
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "0x665c54"
+blue = "0xbdae93"
+cyan = "0xd65d0e"
+green = "0x3c3836"
+magenta = "0xebdbb2"
+red = "0xfe8019"
+white = "0xfbf1c7"
+yellow = "0x504945"
+
+# [colors.cursor]
+# cursor = "0xd5c4a1"
+# text = "0x1d2021"
+
+[colors.vi_mode_cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+[colors.normal]
+black = "0x1d2021"
+blue = "0x83a598"
+cyan = "0x8ec07c"
+green = "0xb8bb26"
+magenta = "0xd3869b"
+red = "0xfb4934"
+white = "0xd5c4a1"
+yellow = "0xfabd2f"
+
+[colors.primary]
+background = "0x1d2021"
+# foreground = "0xd5c4a1"
+
+[cursor.style]
+shape = "Block"
+blinking = "Always"
+
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 18
+# use_thin_strokes = true
+
+[font.normal]
+# family = "JetBrainsMonoNL Nerd Font Mono"
+family = "FiraMono Nerd Font Mono"
+# style = "Medium"
+
+[[keyboard.bindings]]
+chars = "\u001BF"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BB"
+key = "Left"
+mods = "Alt"
+
+[scrolling]
+history = 100000
+
+[window]
+startup_mode = "Fullscreen"
+dynamic_title = true
+title = "Terminal"
+opacity = 0.99
+# decorations = "buttonless"
+

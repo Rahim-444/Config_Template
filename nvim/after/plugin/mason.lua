@@ -19,7 +19,9 @@ local on_attach = function(_, bufnr)
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+	-- nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+	--go to definition with telescope
+	-- nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinitions")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
@@ -53,9 +55,10 @@ local servers = {
 	rust_analyzer = {},
 	lua_ls = {
 		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-			hint = { enable = true },
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				global = { "vim" },
+			},
 		},
 	},
 	tsserver = {
@@ -101,6 +104,15 @@ mason_lspconfig.setup({
 
 mason_lspconfig.setup_handlers({
 	function(server_name)
+		if server_name == "clangd" then
+			require("lspconfig")[server_name].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				cmd = { "clangd", "--offset-encoding=utf-16" },
+				settings = servers[server_name],
+			})
+			return
+		end
 		require("lspconfig")[server_name].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,

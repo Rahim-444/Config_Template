@@ -1,17 +1,16 @@
 local M = {}
 M.theme = function()
-	theme = "gruvbox"
+	-- theme = "gruvbox-material"
 	local colors = {
-		darkgray = "#1A1B26",
-		gray = "#565c71",
+		gray = "#6272A4",
 		innerbg = nil,
-		outerbg = "#1A1B26",
-		normal = "#BB80B3",
-		insert = "#FFA759",
-		visual = "#7AA2F7",
-		replace = "#7DCFFF",
-		command = "#D38AEA",
-		terminal = "#4CBF99",
+		outerbg = "#1E1E2E", -- darker background
+		normal = "#FFB86C", -- vibrant yellow for normal text
+		insert = "#50FA7B", -- bright green for insertion point
+		visual = "#BD93F9", -- bright purple for visual selection
+		replace = "#FF5555", -- bright red for replaced text
+		command = "#8BE9FD", -- bright cyan for commands
+		terminal = "#F1FA8C", -- bright yellow-green for terminal text
 	}
 	return {
 		inactive = {

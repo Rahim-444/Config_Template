@@ -89,6 +89,7 @@ null_ls.setup({
 				"typescript",
 				"typescriptreact",
 				"java",
+				"bash",
 			},
 		}),
 
@@ -152,7 +153,7 @@ prettier.setup({
 		-- jsx_bracket_same_line = false,
 		jsx_single_quote = false,
 		print_width = 80,
-		prose_wrap = "preserve",
+		prose_wrap = "always",
 		quote_props = "as-needed",
 		semi = true,
 		single_attribute_per_line = false,

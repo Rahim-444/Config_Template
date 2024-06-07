@@ -1,9 +1,27 @@
 return {
-	{ "rose-pine/neovim",                    name = "rose-pine" },
+	{ "morhetz/gruvbox" },
+	{ "rose-pine/neovim", name = "rose-pine" },
 	"mechatroner/rainbow_csv",
 	"windwp/nvim-ts-autotag",
 	"chrisgrieser/nvim-spider",
-	"ntpeters/vim-better-whitespace",
+	-- "ntpeters/vim-better-whitespace",
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod",                     lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			-- Your DBUI configuration
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
+	},
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "VeryLazy",
@@ -46,12 +64,12 @@ return {
 			-- refer to the configuration section below
 		},
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl",      opts = {} },
+	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl",                               opts = {} },
 
 	-- Rainbow Highlighting
-	-- {
-	-- 	"HiPhish/nvim-ts-rainbow2",
-	-- },
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+	},
 
 	{
 		"folke/noice.nvim",
@@ -60,11 +78,11 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		opts = {
-			timeout = 1500,
+			timeout = 1000,
 			background_colour = "#000000",
-			render = "wrapped-compact",
+			render = "compact",
 			fps = 60,
-			stages = "fade_in_slide_out",
+			stages = "static",
 		},
 	},
 
@@ -107,7 +125,7 @@ return {
 		event = "VeryLazy",
 	},
 	"onsails/lspkind.nvim",
-	"andweeb/presence.nvim",
+	-- "andweeb/presence.nvim",
 	{ "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
 
 	{
@@ -156,9 +174,9 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = { "BufReadPre", "BufNewFile" },
 	},
-	"tpope/vim-sleuth",    -- Detect tabstop and shiftwidth automatically
+	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	"theprimeagen/harpoon", --quickly move between files
-	"mbbill/undotree",     --helps to undo things easily
+	"mbbill/undotree", --helps to undo things easily
 	--debugger
 	--[[
 	{
@@ -299,5 +317,11 @@ return {
 				-- refer to the configuration section below
 			})
 		end,
+	},
+	{
+		"vyfor/cord.nvim",
+		build = "./build",
+		event = "VeryLazy",
+		opts = {},
 	},
 }

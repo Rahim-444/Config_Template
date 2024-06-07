@@ -1,9 +1,6 @@
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
-	autotag = {
-		enable = true,
-	},
 	-- rainbow = {
 	-- 	enable = true,
 	-- 	-- list of languages you want to disable the plugin for

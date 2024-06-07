@@ -37,6 +37,7 @@ vim.keymap.set("n", "<leader>ff", function()
 end, { desc = "Toggle Inlay Hints" })
 --map esc to clear search
 vim.api.nvim_set_keymap("n", "<Esc>", ":nohlsearch<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
 -- Deselect the current search in normal mode
 vim.api.nvim_set_keymap("n", "<CapsLock>", ":nohlsearch<CR>", { noremap = true, silent = true })
