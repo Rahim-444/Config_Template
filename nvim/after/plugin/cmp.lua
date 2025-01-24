@@ -1,10 +1,43 @@
+-- Set completeopt to have a better completion experience
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-require("luasnip.loaders.from_vscode").lazy_load()
 
+-- Load VSCode-like snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
+
+-- Define common select behavior
 local select_opts = { behavior = cmp.SelectBehavior.Select }
+
+-- Prettier symbols for the kind labels
+local kind_icons = {
+	Text = "󰉿",
+	Method = "󰆧",
+	Function = "󰊕",
+	Constructor = "",
+	Field = "󰜢",
+	Variable = "󰀫",
+	Class = "󰠱",
+	Interface = "",
+	Module = "",
+	Property = "󰜢",
+	Unit = "󰑭",
+	Value = "󰎠",
+	Enum = "",
+	Keyword = "󰌋",
+	Snippet = "",
+	Color = "󰏘",
+	File = "󰈙",
+	Reference = "󰈇",
+	Folder = "󰉋",
+	EnumMember = "",
+	Constant = "󰏿",
+	Struct = "󰙅",
+	Event = "",
+	Operator = "󰆕",
+	TypeParameter = "",
+}
 
 cmp.setup({
 	snippet = {
@@ -12,111 +45,105 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-	sources = {
-		{ name = "luasnip",  keyword_length = 2 },
-		{ name = "buffer",   keyword_length = 3 },
-		{ name = "nvim_lsp", keyword_length = 1 },
-		{ name = "path" },
-	},
-	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered(),
-	},
-	formatting = {
-		fields = { "menu", "abbr", "kind" },
-		format = function(entry, item)
-			local menu_icon = {
-				nvim_lsp = "λ",
-				luasnip = "⋗",
-				buffer = "Ω",
-				path = "🗀",
-			}
-
-			item.menu = menu_icon[entry.source.name]
-			return item
-		end,
-	},
-	mapping = {
-		["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
-		["<C-n>"] = cmp.mapping.select_next_item(select_opts),
-		["<C-y>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		--
-		-- 	["<C-f>"] = cmp.mapping(function(fallback)
-		-- 		if luasnip.jumpable(1) then
-		-- 			luasnip.jump(1)
-		-- 		else
-		-- 			fallback()
-		-- 		end
-		-- 	end, { "i", "s" }),
-		--
-		-- 	["<C-b>"] = cmp.mapping(function(fallback)
-		-- 		if luasnip.jumpable(-1) then
-		-- 			luasnip.jump(-1)
-		-- 		else
-		-- 			fallback()
-		-- 		end
-		-- 	end, { "i", "s" }),
-		--
-		-- 	["<Tab>"] = cmp.mapping(function(fallback)
-		-- 		local col = vim.fn.col(".") - 1
-		--
-		-- 		if cmp.visible() then
-		-- 			cmp.select_next_item(select_opts)
-		-- 		elseif col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-		-- 			fallback()
-		-- 		else
-		-- 			cmp.complete()
-		-- 		end
-		-- 	end, { "i", "s" }),
-		--
-		-- 	["<S-Tab>"] = cmp.mapping(function(fallback)
-		-- 		if cmp.visible() then
-		-- 			cmp.select_prev_item(select_opts)
-		-- 		else
-		-- 			fallback()
-		-- 		end
-		-- 	end, { "i", "s" }),
-	},
-})
-cmp.setup({
 	window = {
 		completion = {
-			col_offset = -3, -- align the abbr and word on cursor (due to fields order below)
+			border = "rounded",
+			winhighlight = "Normal:CmpNormal",
+			scrollbar = false,
+			col_offset = -3,
+		},
+		documentation = {
+			border = "rounded",
+			winhighlight = "Normal:CmpDocNormal",
+			max_width = 50,
+			max_height = 30,
 		},
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		format = lspkind.cmp_format({
-			mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-			maxwidth = 50,     -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-			menu = {           -- showing type in menu
+		format = function(entry, vim_item)
+			-- Kind icons
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+
+			-- Source
+			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
-				path = "[Path]",
+				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
-				luasnip = "[LuaSnip]",
-			},
-			before = function(entry, vim_item) -- for tailwind css autocomplete
-				if vim_item.kind == "Color" and entry.completion_item.documentation then
-					local _, _, r, g, b = string.find(entry.completion_item.documentation, "^rgb%((%d+), (%d+), (%d+)")
-					if r then
-						local color = string.format("%02x", r) .. string.format("%02x", g) .. string.format("%02x", b)
-						local group = "Tw_" .. color
-						if vim.fn.hlID(group) < 1 then
-							vim.api.nvim_set_hl(0, group, { fg = "#" .. color })
-						end
-						vim_item.kind = "■" -- or "⬤" or anything
-						vim_item.kind_hl_group = group
-						return vim_item
+				path = "[Path]",
+			})[entry.source.name]
+
+			-- Tailwind CSS color preview
+			if vim_item.kind == "Color" and entry.completion_item.documentation then
+				local _, _, r, g, b = string.find(entry.completion_item.documentation,
+					"^rgb%((%d+), (%d+), (%d+)")
+				if r then
+					local color = string.format("%02x", r) ..
+					string.format("%02x", g) .. string.format("%02x", b)
+					local group = "Tw_" .. color
+					if vim.fn.hlID(group) < 1 then
+						vim.api.nvim_set_hl(0, group, { fg = "#" .. color })
 					end
+					vim_item.kind = "■ Color"
+					vim_item.kind_hl_group = group
 				end
-				-- vim_item.kind = icons[vim_item.kind] and (icons[vim_item.kind] .. vim_item.kind) or vim_item.kind
-				-- or just show the icon
-				vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or vim_item.kind
-				return vim_item
-			end,
+			end
+
+			return vim_item
+		end,
+	},
+	sources = {
+		{ name = "nvim_lsp", priority = 1000 },
+		{ name = "luasnip",  priority = 750 },
+		{ name = "buffer",   priority = 500 },
+		{ name = "path",     priority = 250 },
+	},
+	mapping = {
+		["<C-p>"] = cmp.mapping.select_prev_item(select_opts),
+		["<C-n>"] = cmp.mapping.select_next_item(select_opts),
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
+		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-e>"] = cmp.mapping.abort(),
+		["<C-y>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
 		}),
+		-- ["<Tab>"] = cmp.mapping(function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_next_item(select_opts)
+		-- 	elseif luasnip.expand_or_jumpable() then
+		-- 		luasnip.expand_or_jump()
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end, { "i", "s" }),
+		-- ["<S-Tab>"] = cmp.mapping(function(fallback)
+		-- 	if cmp.visible() then
+		-- 		cmp.select_prev_item(select_opts)
+		-- 	elseif luasnip.jumpable(-1) then
+		-- 		luasnip.jump(-1)
+		-- 	else
+		-- 		fallback()
+		-- 	end
+		-- end, { "i", "s" }),
 	},
 })
+
+-- Set up nice looking borders and better highlights
+vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#1f2335" })
+vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = "#1f2335" })
+vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#27a1b9" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82aaff", bold = true })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82aaff", bold = true })
+vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#c792ea", italic = true })
+
+-- Add borders to floating windows
+local win = require("cmp.utils.window")
+
+win.info_ = win.info
+win.info = function(self)
+	local info = self:info_()
+	info.scrollbar = false
+	return info
+end

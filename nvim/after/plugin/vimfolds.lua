@@ -11,31 +11,31 @@ vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
 }
-local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+local language_servers = require("lspconfig").util._available_servers()
 for _, ls in ipairs(language_servers) do
-    if ls == "clangd" then
-        require("lspconfig")[ls].setup({
-            capabilities = capabilities,
-            cmd = { "clangd", "--offset-encoding=utf-16" },
-        })
-    elseif ls == "lua_ls" then
-        require("lspconfig")[ls].setup({
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                },
-            },
-        })
-    else
-        require("lspconfig")[ls].setup({
-            capabilities = capabilities,
-        })
-    end
+	if ls == "clangd" then
+		require("lspconfig")[ls].setup({
+			capabilities = capabilities,
+			cmd = { "clangd", "--offset-encoding=utf-16" },
+		})
+	elseif ls == "lua_ls" then
+		require("lspconfig")[ls].setup({
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+			},
+		})
+	else
+		require("lspconfig")[ls].setup({
+			capabilities = capabilities,
+		})
+	end
 end
 require("ufo").setup()

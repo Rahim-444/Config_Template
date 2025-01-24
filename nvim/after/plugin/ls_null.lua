@@ -100,17 +100,17 @@ null_ls.setup({
 		}),
 
 		-- Python formatter & diagnostics
-		-- builtins.diagnostics.flake8.with({
-		-- 	filetypes = { "python" },
-		-- 	command = "flake8",
-		-- 	args = { "--stdin-display-name", "$FILENAME", "-" },
-		-- }),
-		--
-		-- builtins.formatting.black.with({
-		-- 	filetypes = { "python" },
-		-- 	command = "black",
-		-- 	args = { "--quiet", "--fast", "-" },
-		-- }),
+		builtins.diagnostics.flake8.with({
+			filetypes = { "python" },
+			command = "flake8",
+			args = { "--stdin-display-name", "$FILENAME", "-" },
+		}),
+
+		builtins.formatting.black.with({
+			filetypes = { "python" },
+			command = "black",
+			args = { "--quiet", "--fast", "-" },
+		}),
 
 		-- C/CPP formatter
 		-- builtins.formatting.clang_format.with({
@@ -146,13 +146,13 @@ prettier.setup({
 	cli_options = {
 		arrow_parens = "always",
 		bracket_spacing = true,
-		bracket_same_line = false,
+		bracket_same_line = true,
 		embedded_language_formatting = "auto",
 		end_of_line = "lf",
 		html_whitespace_sensitivity = "css",
 		-- jsx_bracket_same_line = false,
 		jsx_single_quote = false,
-		print_width = 80,
+		-- print_width = 80,
 		prose_wrap = "always",
 		quote_props = "as-needed",
 		semi = true,
