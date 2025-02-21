@@ -17,6 +17,10 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.lsp.inlay_hint.enable()
+--heighlight current line number with orange
+-- vim.cmd([[
+--     highlight LineNr guifg=#00FF00 gui=bold
+-- ]])
 
 --set color column to 80
 -- vim.opt.colorcolumn = "80"
@@ -70,8 +74,8 @@ vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
--- vim.opt.shiftwidth = 2
--- vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 vim.opt.wrap = false
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" })

@@ -10,6 +10,7 @@ function R(name)
 	require("plenary.reload").reload_module(name)
 end
 
+-- Reloads
 autocmd("TextYankPost", {
 	group = yank_group,
 	pattern = "*",

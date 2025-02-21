@@ -30,6 +30,19 @@ return {
         end,
     },
     { "morhetz/gruvbox" },
+    {
+        "dgox16/oldworld.nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
+        "AlexvZyl/nordic.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("nordic").load()
+        end,
+    },
     { "rose-pine/neovim", name = "rose-pine" },
     "mechatroner/rainbow_csv",
     "windwp/nvim-ts-autotag",
@@ -258,8 +271,134 @@ return {
     "MunifTanjim/prettier.nvim",
     {
         "williamboman/mason.nvim",
-        "jose-elias-alvarez/null-ls.nvim",
-        "jay-babu/mason-null-ls.nvim",
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvimtools/none-ls-extras.nvim",
+        },
+        config = function()
+            local null_ls = require("null-ls")
+            local builtins = null_ls.builtins
+            local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+            local event = "BufWritePre" -- or "BufWritePost"
+            local async = event == "BufWritePost"
+            null_ls.setup({
+                on_attach = function(client, bufnr)
+                    if client.name == "html" then
+                        client.server_capabilities.documentFormattingProvider = false
+                    end
+
+                    if client.supports_method("textDocument/formatting") then
+                        vim.keymap.set("n", "<Leader>fm", function()
+                            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+                        end, { buffer = bufnr, desc = "[lsp] format" })
+
+                        -- format on save
+                        vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
+                        vim.api.nvim_create_autocmd(event, {
+                            buffer = bufnr,
+                            group = group,
+                            callback = function()
+                                vim.lsp.buf.format({
+                                    filter = function()
+                                        return client.name == "null-ls"
+                                    end,
+                                    bufnr = bufnr,
+                                    async = async,
+                                })
+                            end,
+                            desc = "[lsp] format on save",
+                        })
+                    end
+
+                    if client.supports_method("textDocument/rangeFormatting") then
+                        vim.keymap.set("x", "<Leader>fm", function()
+                            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+                        end, { buffer = bufnr, desc = "[lsp] format" })
+                    end
+                end,
+
+                sources = {
+                    -- Web formatter & diagnostics
+                    require("none-ls.diagnostics.eslint_d"),
+                    builtins.formatting.prettier.with({
+                        filetypes = {
+                            "html",
+                            "json",
+                            "markdown",
+                            "css",
+                            "c",
+                            "javascript",
+                            "javascriptreact",
+                            "typescript",
+                            "typescriptreact",
+                            "java",
+                            "bash",
+                            "go",
+                        },
+                        extra_args = function()
+                            local project_config = vim.fn.getcwd() .. "/.prettierrc"
+
+                            if vim.fn.filereadable(project_config) == 1 then
+                                return { "--config", project_config }
+                            else
+                                return {} -- Use default Prettier settings
+                            end
+                        end,
+                    }),
+
+                    -- builtins.diagnostics.eslint_d.with({
+                    -- 	diagnostics_format = "[eslint] #{m}\n(#{c})",
+                    -- 	command = "eslint_d",
+                    -- 	args = { "-f", "json", "--stdin", "--stdin-filename", "$FILENAME" },
+                    -- }),
+
+                    -- Python formatter & diagnostics
+                    -- builtins.diagnostics.flake8.with({
+                    --     filetypes = { "python" },
+                    --     command = "flake8",
+                    --     args = { "--stdin-display-name", "$FILENAME", "-" },
+                    -- }),
+                    --
+                    -- format with prettier
+
+                    builtins.formatting.black.with({
+                        filetypes = { "python" },
+                        command = "black",
+                        args = { "--quiet", "--fast", "-" },
+                    }),
+
+                    -- C/CPP formatter
+                    -- builtins.formatting.clang_format.with({
+                    -- 	filetypes = {
+                    -- 		"c",
+                    -- 		"cpp",
+                    -- 		"cs", --[[ "javascriptreact"  ]]
+                    -- 	},
+                    -- 	command = "clang-format",
+                    -- }),
+                    -- rust
+                    -- builtins.formatting.rustfmt.with({
+                    --     filetypes = { "rust" },
+                    -- }),
+                    -- Lua
+                    builtins.formatting.stylua.with({
+                        filetypes = { "lua" },
+                    }),
+                    --java
+                    builtins.formatting.google_java_format.with({
+                        filetypes = { "java" },
+                    }),
+
+                    -- -- Shell
+                    builtins.formatting.shfmt,
+                    -- builtins.diagnostics.shellcheck.with({
+                    --     diagnostics_format = "#{m} [#{c}]",
+                    -- }),
+                },
+            })
+        end,
     },
     {
         "windwp/nvim-autopairs",
@@ -311,6 +450,10 @@ return {
         build = "make",
         cond = vim.fn.executable("make") == 1,
     },
+    {
+        "sphamba/smear-cursor.nvim",
+        opts = {},
+    },
     -- makes coping easier
     "equalsraf/win32yank",
     -- play media files through telescope
@@ -341,21 +484,10 @@ return {
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup({
-                -- Set the transparency level for the pop-up window
-                window = {
-                    border = "single",
-                    position = "bottom",
-                    margin = { 1, 0, 1, 0 },
-                    padding = { 1, 1, 1, 1 },
-                    height = 10,
-                    width = 40,
-                    highlight = "WhichKeyFloat",
-                },
-                -- Other configuration options go here
-            })
+            require("which-key").setup({})
         end,
     },
+    "echasnovski/mini.icons",
     "dbgx/lldb.nvim",
     -- Debuggise ({
     -- Autocompletion
@@ -382,8 +514,15 @@ return {
     },
     {
         "vyfor/cord.nvim",
-        build = "./build",
+        build = ":Cord update",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "nvim-pack/nvim-spectre",
+        event = "VeryLazy",
+        config = function()
+            require("spectre").setup()
+        end,
     },
 }

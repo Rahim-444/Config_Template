@@ -87,12 +87,14 @@ dapui.setup({
 require("nvim-dap-virtual-text").setup()
 ]]
 --
+local auto_theme_custom = require("lualine.themes.auto")
+auto_theme_custom.normal.c.bg = "aucun"
 
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
 		-- theme = require("me.lualine").theme(),
-		theme = "auto",
+		theme = auto_theme_custom,
 		-- component_separators = "|",
 		-- section_separators = "",
 		component_separators = { left = "", right = "" },

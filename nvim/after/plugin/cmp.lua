@@ -48,13 +48,12 @@ cmp.setup({
 	window = {
 		completion = {
 			border = "rounded",
-			winhighlight = "Normal:CmpNormal",
-			scrollbar = false,
+			winhighlight = "Normal:CmpTransparent,FloatBorder:CmpBorder",
 			col_offset = -3,
 		},
 		documentation = {
 			border = "rounded",
-			winhighlight = "Normal:CmpDocNormal",
+			winhighlight = "Normal:CmpTransparent,FloatBorder:CmpBorder",
 			max_width = 50,
 			max_height = 30,
 		},
@@ -109,31 +108,12 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		-- ["<Tab>"] = cmp.mapping(function(fallback)
-		-- 	if cmp.visible() then
-		-- 		cmp.select_next_item(select_opts)
-		-- 	elseif luasnip.expand_or_jumpable() then
-		-- 		luasnip.expand_or_jump()
-		-- 	else
-		-- 		fallback()
-		-- 	end
-		-- end, { "i", "s" }),
-		-- ["<S-Tab>"] = cmp.mapping(function(fallback)
-		-- 	if cmp.visible() then
-		-- 		cmp.select_prev_item(select_opts)
-		-- 	elseif luasnip.jumpable(-1) then
-		-- 		luasnip.jump(-1)
-		-- 	else
-		-- 		fallback()
-		-- 	end
-		-- end, { "i", "s" }),
 	},
 })
 
--- Set up nice looking borders and better highlights
-vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#1f2335" })
-vim.api.nvim_set_hl(0, "CmpDocNormal", { bg = "#1f2335" })
-vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#27a1b9" })
+-- Set up custom highlights for transparency and borders
+vim.api.nvim_set_hl(0, "CmpTransparent", { bg = "none" })
+vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#5eacd3" })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82aaff", bold = true })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82aaff", bold = true })
 vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#c792ea", italic = true })
