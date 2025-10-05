@@ -47,6 +47,28 @@ local servers = {
 		hint = { enable = true },
 	},
 	pyright = {},
+	jdtls = {
+		settings = {
+			java = {
+				format = {
+					enabled = true,
+				},
+				codeGeneration = {
+					toString = {
+						template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+					},
+				},
+			},
+		},
+	},
+	ocamllsp = {
+		cmd = { "ocamllsp" },
+		filetypes = { "ocaml", "reason" },
+		root_dir = function(fname)
+			return require("lspconfig.util").root_pattern("dune-project", ".git")(fname)
+		end,
+	},
+	intelephense = {},
 	rust_analyzer = {},
 	lua_ls = {
 		Lua = {
@@ -102,21 +124,4 @@ vim.diagnostic.config({
 	virtual_text = true,
 	update_in_insert = false,
 	severity_sort = true,
-})
-
--- Setup handlers for LSP servers
-mason_lspconfig.setup_handlers({
-	function(server_name)
-		local opts = {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = servers[server_name],
-		}
-
-		if server_name == "clangd" then
-			opts.cmd = servers.clangd.cmd
-		end
-
-		require("lspconfig")[server_name].setup(opts)
-	end,
 })

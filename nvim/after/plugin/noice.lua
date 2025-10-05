@@ -1,12 +1,5 @@
 require("noice").setup({
 	lsp = {
-		progress = {
-			enabled = false,
-			-- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
-			-- See the section on formatting for more details on how to customize.
-			format = "",
-			format_done = "",
-		},
 		filter = {
 			{
 				event = "Notify",
@@ -30,19 +23,19 @@ require("noice").setup({
 			silent = true, -- set to true to not show a message if hover is not available
 			view = nil, -- when nil, use defaults from documentation
 			---@type NoiceViewOptions
-			opts = {},  -- merged with defaults from documentation
+			opts = {}, -- merged with defaults from documentation
 		},
 		signature = {
-			enabled = false,
+			enabled = true,
 			auto_open = {
 				enabled = true,
 				trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
 				luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
 				throttle = 50, -- Debounce lsp signature help request by 50ms
 			},
-			view = nil,   -- when nil, use defaults from documentation
+			view = nil, -- when nil, use defaults from documentation
 			---@type NoiceViewOptions
-			opts = {},    -- merged with defaults from documentation
+			opts = {}, -- merged with defaults from documentation
 		},
 		-- defaults for hover and signature help
 		documentation = {

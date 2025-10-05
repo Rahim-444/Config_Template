@@ -144,6 +144,18 @@ return {
 
     {
         "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- add any options here
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            "MunifTanjim/nui.nvim",
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            "rcarriga/nvim-notify",
+        },
     },
 
     {
@@ -336,6 +348,8 @@ return {
                             "java",
                             "bash",
                             "go",
+                            "php",
+                            "ocaml",
                         },
                         extra_args = function()
                             local project_config = vim.fn.getcwd() .. "/.prettierrc"
@@ -407,7 +421,7 @@ return {
     },
     {
         "windwp/nvim-ts-autotag",
-        ft = { "java", "javascript", "javascriptreact", "html", "css", "typescript", "typescriptreact" },
+        ft = { "java", "javascript", "javascriptreact", "html", "css", "typescript", "typescriptreact", "ocaml" },
         dependencies = "nvim-treesitter",
         branch = "main",
         config = function()
@@ -516,6 +530,7 @@ return {
         "vyfor/cord.nvim",
         build = ":Cord update",
         event = "VeryLazy",
+        config = function() end,
         opts = {},
     },
     {
